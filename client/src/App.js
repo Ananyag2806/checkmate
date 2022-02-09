@@ -1,19 +1,25 @@
 import './App.css';
-import ChessBoard from './components/ChessBoard';
+import { Fragment } from 'react';
+import Navbar from './components/Navbar';
+import Landing from './components/Landing';
+import Trending from './components/Trending';
+import Best from './components/Best';
+import AddYourOwn from './components/AddYourOwn';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
 	return (
-		<div className='App'>
-			<ChessBoard
-				moves={[
-					'r1b1kbnr/pppp1ppp/2n2q2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4',
-					'r1b1kbnr/pppp1ppp/2n2q2/3Np3/4P3/5N2/PPPP1PPP/R1BQKB1R b KQkq - 5 4',
-					'r1b1kbnr/pppp1ppp/2nq4/3Np3/4P3/5N2/PPPP1PPP/R1BQKB1R w KQkq - 6 5',
-					'r1b1kbnr/pppp1ppp/2nq4/3Np3/2B1P3/5N2/PPPP1PPP/R1BQK2R b KQkq - 7 5',
-					'r1b1kbnr/pppp1pp1/2nq3p/3Np3/2B1P3/5N2/PPPP1PPP/R1BQK2R w KQkq - 0 6',
-				]}
-			/>
-		</div>
+		<Router>
+			<Fragment>
+				<Navbar />
+				<Routes>
+					<Route path='/' element={<Landing />} />
+					<Route exact path='/trending' element={<Trending />} />
+					<Route exact path='/best' element={<Best />} />
+					<Route exact path='/addYourOwn' element={<AddYourOwn />} />
+				</Routes>
+			</Fragment>
+		</Router>
 	);
 }
 
