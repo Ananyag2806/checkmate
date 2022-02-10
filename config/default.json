@@ -1,0 +1,3 @@
+{
+	"mongoURI": "mongodb+srv://ananya:12345@cluster0.psjto.mongodb.net/checkmate?retryWrites=true&w=majority"
+}
