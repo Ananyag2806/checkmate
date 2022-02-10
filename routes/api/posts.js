@@ -104,4 +104,65 @@ router.delete('/:id', auth, async (req, res) => {
 	}
 });
 
+//@route    PUT api/posts/upvotes/:id
+//@desc     upvote a post;
+//@access   private
+
+router.put('/upvotes/:id', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.id);
+
+		// check if the post has alredy been upvoted
+		if (
+			post.upvotes.filter(
+				(upvote) => upvote.user.toString() === req.user.id
+			).length > 0
+		) {
+			post.upvotes.shift({ user: req.user.id });
+		} else {
+			post.upvotes.unshift({ user: req.user.id });
+		}
+		await post.save();
+		res.json(post.upvotes.length);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error for upvote');
+	}
+});
+
+//@route    PUT api/posts/downvotes/:id
+//@desc     downvote a post;
+//@access   private
+// To do - a user can upvote and downvote a post at the same time
+router.put('/downvotes/:id', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.id);
+
+		// // check if the post has been upvoted
+		// if (
+		// 	post.upvotes.filter(
+		// 		(upvote) => upvote.user.toString() === req.user.id
+		// 	).length > 0
+		// ) {
+		// 	post.upvotes.shift({ user: req.user.id });
+		// }
+
+		// check if the post has alredy been downvoted
+		if (
+			post.downvotes.filter(
+				(downvote) => downvote.user.toString() === req.user.id
+			).length > 0
+		) {
+			post.downvotes.shift({ user: req.user.id });
+		} else {
+			post.downvotes.unshift({ user: req.user.id });
+		}
+		await post.save();
+		res.json(post.downvotes.length);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error for downvote');
+	}
+});
+
 module.exports = router;

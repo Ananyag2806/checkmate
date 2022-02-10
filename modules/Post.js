@@ -10,9 +10,22 @@ const PostSchema = new Schema({
 		type: Array,
 		required: true,
 	},
-	upvotes: {
-		type: Number,
-	},
+	upvotes: [
+		{
+			user: {
+				type: Schema.Types.ObjectId,
+				ref: 'users',
+			},
+		},
+	],
+	downvotes: [
+		{
+			user: {
+				type: Schema.Types.ObjectId,
+				ref: 'users',
+			},
+		},
+	],
 	bestMoves: {
 		type: Array,
 		required: true,
