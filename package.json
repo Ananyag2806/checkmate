@@ -1,0 +1,27 @@
+{
+  "name": "checkmate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ananyag2806/checkmate.git"
+  },
+  "author": "Ananya Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ananyag2806/checkmate/issues"
+  },
+  "homepage": "https://github.com/Ananyag2806/checkmate#readme",
+  "dependencies": {
+    "config": "^3.3.7",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.1",
+    "request": "^2.88.2"
+  }
+}
