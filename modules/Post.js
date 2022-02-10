@@ -12,7 +12,6 @@ const PostSchema = new Schema({
 	},
 	upvotes: {
 		type: Number,
-		required: true,
 	},
 	bestMoves: {
 		type: Array,
