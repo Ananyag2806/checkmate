@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const Post = require('../../modules/Post');
@@ -42,5 +42,19 @@ router.post(
 		}
 	}
 );
+
+//@route    GET api/posts
+//@desc     create a post
+//@access   private
+
+router.get('/', auth, async (req, res) => {
+	try {
+		const posts = await Post.find();
+		res.json(posts);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error for post');
+	}
+});
 
 module.exports = router;
