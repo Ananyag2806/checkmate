@@ -26,6 +26,7 @@ const PostSchema = new Schema({
 			},
 		},
 	],
+	// to do - new variable called total points = upvotes.length - downvotes.length
 	bestMoves: {
 		type: Array,
 		required: true,
