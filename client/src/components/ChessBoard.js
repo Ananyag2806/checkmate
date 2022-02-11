@@ -1,5 +1,10 @@
 import { useRef, useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
+import { makeStyles } from '@mui/styles';
 import Chess from 'chess.js';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import bB from './media/bB.png';
 // import bK from './media/bK.png';
 // import bN from './media/bN.png';
@@ -16,7 +21,23 @@ import bB from './media/bB.png';
 
 import { Chessboard } from 'react-chessboard';
 
+const useStyles = makeStyles({
+	button: {
+		margin: '100px',
+		color: 'black',
+	},
+	buttonContainer: {
+		display: 'flex',
+		justifyContent: 'center',
+	},
+	arrow: {
+		margin: '10px',
+	},
+});
+
 export default function ChessBoard({ moves }) {
+	const classes = useStyles();
+
 	const [currMove, setCurrMove] = useState(0);
 	// console.log(currMove + ' outer');
 	const chessboardRef = useRef();
@@ -88,9 +109,50 @@ export default function ChessBoard({ moves }) {
 				ref={chessboardRef}
 			/>
 
-			<button onClick={() => prevMove(currMove)}>Previous</button>
-			<button onClick={() => setCurrMove(0)}>Reset</button>
-			<button onClick={() => nextMove(currMove)}>Next</button>
+			{/* Added inline style becaues useStyles gets overidden due to a bug */}
+			<div className={classes.buttonContainer}>
+				<Button
+					style={{
+						margin: '20px',
+						padding: '10px',
+						color: 'white',
+						backgroundColor: 'black',
+						fontSize: '15px',
+						width: '120px',
+					}}
+					variant='contained'
+					onClick={() => prevMove(currMove)}>
+					<ArrowBackIosNewIcon className={classes.arrow} />
+					Back
+				</Button>
+				<Button
+					style={{
+						margin: '20px',
+						padding: '10px',
+						color: 'white',
+						backgroundColor: 'black',
+						fontSize: '15px',
+						width: '90px',
+					}}
+					variant='contained'
+					onClick={() => setCurrMove(0)}>
+					Reset
+				</Button>
+				<Button
+					style={{
+						margin: '20px',
+						padding: '10px',
+						color: 'white',
+						backgroundColor: 'black',
+						fontSize: '15px',
+						width: '120px',
+					}}
+					variant='contained'
+					onClick={() => nextMove(currMove)}>
+					Next
+					<ArrowForwardIosIcon className={classes.arrow} />
+				</Button>
+			</div>
 		</div>
 	);
 }

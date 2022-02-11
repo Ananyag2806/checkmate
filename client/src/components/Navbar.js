@@ -56,7 +56,14 @@ function Navbar() {
 					<li className={classes.listItem}>Add Your Own Move</li>
 				</Link>
 			</ul>
-			<AccountCircleOutlinedIcon className={classes.profile} />
+			<AccountCircleOutlinedIcon
+				style={{
+					fontSize: '45px',
+					marginRight: '100px',
+					alignSelf: 'center',
+				}}
+				// className={classes.profile}
+			/>
 		</div>
 	);
 }
