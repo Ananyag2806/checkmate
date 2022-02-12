@@ -1,7 +1,6 @@
 import './App.css';
 import { Fragment } from 'react';
 import Navbar from './components/Navbar';
-import RoutingTabs from './components/RoutingTabs';
 import Landing from './components/Landing';
 import Trending from './components/Trending';
 import Best from './components/Best';
@@ -46,11 +45,6 @@ function App() {
 				</ThemeProvider>
 			</Fragment>
 		</Router>
-		// <>
-		// 	{/* <TabCustom /> */}
-		// 	{/* <Navbar /> */}
-		// 	<RoutingTabs />
-		// </>
 	);
 }
 
