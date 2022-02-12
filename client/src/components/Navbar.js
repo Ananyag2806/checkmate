@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
-import Container from '@mui/material/Container';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import logo from './media/checkmate.png';
-import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 
 const useStyles = makeStyles({
 	root: {
@@ -16,22 +13,26 @@ const useStyles = makeStyles({
 		boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.2)',
 		display: 'flex',
 		justifyContent: 'space-between',
+		indicatorColor: 'black',
 	},
 	logo: {
 		height: '85px',
 		alignSelf: 'center',
 		marginLeft: '10px',
 	},
-	list: {
+	tabContainer: {
 		display: 'flex',
-		justifyContent: 'center',
-		listStyleType: 'none',
+		textColor: '',
 	},
-	listItem: {
+	tabItem: {
 		margin: '35px 25px 15px 25px',
 		fontSize: '23px',
 		// fontFamily: 'Ubuntu',
 		fontWeight: 550,
+		display: 'flex',
+	},
+	indicator: {
+		backgroundColor: 'black',
 	},
 	link: {
 		textDecoration: 'none',
@@ -43,38 +44,6 @@ const useStyles = makeStyles({
 		height: '30px',
 	},
 });
-
-// function TabPanel(props) {
-// 	const { children, value, index, ...other } = props;
-
-// 	return (
-// 		<div
-// 			role='tabpanel'
-// 			hidden={value !== index}
-// 			id={`simple-tabpanel-${index}`}
-// 			aria-labelledby={`simple-tab-${index}`}
-// 			{...other}>
-// 			{value === index && (
-// 				<Box sx={{ p: 3 }}>
-// 					<Typography>{children}</Typography>
-// 				</Box>
-// 			)}
-// 		</div>
-// 	);
-// }
-
-// TabPanel.propTypes = {
-// 	children: PropTypes.node,
-// 	index: PropTypes.number.isRequired,
-// 	value: PropTypes.number.isRequired,
-// };
-
-// function a11yProps(index) {
-// 	return {
-// 		id: `simple-tab-${index}`,
-// 		'aria-controls': `simple-tabpanel-${index}`,
-// 	};
-// }
 
 function Navbar() {
 	const [value, setValue] = React.useState(0);
@@ -89,49 +58,66 @@ function Navbar() {
 		<div className={classes.root}>
 			<img className={classes.logo} src={logo} alt={'Logo'} />
 
-			{/* <ul className={classes.list}>
-				<Link to='/trending' className={classes.link}>
-					<li className={classes.listItem}>Trending</li>
-				</Link>
-				<Link to='/best' className={classes.link}>
-					<li className={classes.listItem}>Best</li>
-				</Link>
-				<Link to='/trending' className={classes.link}>
-					<li className={classes.listItem}>Add Your Own Move</li>
-				</Link>
-			</ul> */}
 			<Tabs
 				value={value}
 				onChange={handleChange}
-				aria-label='basic tabs example'>
+				textColor='inherit'
+				TabIndicatorProps={{ style: { background: 'black' } }}
+				style={{}}>
 				<Tab
-					className={classes.listItem}
+					className={classes.tabItem}
 					to='/trending'
 					component={Link}
-					label='trending'
+					label='Trending'
+					disableRipple={true}
+					style={{
+						margin: '25px',
+						marginBottom: '0',
+						fontSize: '18px',
+						// fontFamily: 'Ubuntu',
+						fontWeight: 550,
+					}}
 				/>
 				<Tab
-					className={classes.listItem}
+					className={classes.tabItem}
 					to='/best'
 					component={Link}
-					label='best'
+					label='Best'
+					disableRipple={true}
+					style={{
+						margin: '25px',
+						marginBottom: '0',
+						fontSize: '18px',
+						// fontFamily: 'Ubuntu',
+						fontWeight: 550,
+					}}
 				/>
 				<Tab
-					className={classes.listItem}
+					className={classes.tabItem}
 					to='/addYourOwn'
 					component={Link}
-					label='addYourOwn'
+					label='Add Your Own'
+					disableRipple={true}
+					style={{
+						margin: '25px',
+						marginBottom: '0',
+						fontSize: '18px',
+						// fontFamily: 'Ubuntu',
+						fontWeight: 550,
+					}}
 				/>
 			</Tabs>
 
-			<AccountCircleOutlinedIcon
-				style={{
-					fontSize: '45px',
-					marginRight: '100px',
-					alignSelf: 'center',
-				}}
-				// className={classes.profile}
-			/>
+			<IconButton>
+				<AccountCircleOutlinedIcon
+					style={{
+						fontSize: '45px',
+						margin: '10px',
+						alignSelf: 'center',
+					}}
+					// className={classes.profile}
+				/>
+			</IconButton>
 		</div>
 	);
 }
