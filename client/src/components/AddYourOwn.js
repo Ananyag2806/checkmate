@@ -1,7 +1,8 @@
 import React from 'react';
+import ComingSoon from './ComingSoon';
 
 function AddYourOwn() {
-	return <div>AddYourOwn</div>;
+	return <ComingSoon />;
 }
 
 export default AddYourOwn;

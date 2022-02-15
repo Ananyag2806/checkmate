@@ -1,7 +1,8 @@
 import React from 'react';
+import ComingSoon from './ComingSoon';
 
 function Trending() {
-	return <div>Trending</div>;
+	return <ComingSoon />;
 }
 
 export default Trending;

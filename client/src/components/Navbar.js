@@ -24,6 +24,11 @@ const useStyles = makeStyles({
 		display: 'flex',
 		textColor: '',
 	},
+	navTabs: {
+		[theme.breakpoints.down('md')]: {
+			display: 'none',
+		},
+	},
 	tabItem: {
 		margin: '35px 25px 15px 25px',
 		fontSize: '23px',
@@ -63,7 +68,8 @@ function Navbar() {
 				onChange={handleChange}
 				textColor='inherit'
 				TabIndicatorProps={{ style: { background: 'black' } }}
-				style={{}}>
+				style={{}}
+				className={classes.navTabs}>
 				<Tab
 					className={classes.tabItem}
 					to='/trending'
