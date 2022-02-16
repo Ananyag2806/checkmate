@@ -1,6 +1,7 @@
 import './App.css';
 import { Fragment } from 'react';
 import Navbar from './components/Navbar';
+import NavbarSmall from './components/NavbarSmall';
 import Landing from './components/Landing';
 import Trending from './components/Trending';
 import Best from './components/Best';
@@ -42,6 +43,7 @@ function App() {
 							element={<AddYourOwn />}
 						/>
 					</Routes>
+					<NavbarSmall />
 				</ThemeProvider>
 			</Fragment>
 		</Router>
