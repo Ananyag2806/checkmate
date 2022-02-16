@@ -7,7 +7,15 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import IconButton from '@mui/material/IconButton';
 
-const useStyles = makeStyles({
+// const styles = (theme) => ({
+// 	navTabs: {
+// 		[theme.breakpoints.down('md')]: {
+// 			display: 'none',
+// 		},
+// 	},
+// });
+
+const useStyles = makeStyles((theme) => ({
 	root: {
 		borderRadius: '7px',
 		boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.2)',
@@ -48,7 +56,7 @@ const useStyles = makeStyles({
 		alignSelf: 'center',
 		height: '30px',
 	},
-});
+}));
 
 function Navbar() {
 	const [value, setValue] = React.useState(0);
@@ -62,58 +70,57 @@ function Navbar() {
 	return (
 		<div className={classes.root}>
 			<img className={classes.logo} src={logo} alt={'Logo'} />
-
-			<Tabs
-				value={value}
-				onChange={handleChange}
-				textColor='inherit'
-				TabIndicatorProps={{ style: { background: 'black' } }}
-				style={{}}
-				className={classes.navTabs}>
-				<Tab
-					className={classes.tabItem}
-					to='/trending'
-					component={Link}
-					label='Trending'
-					disableRipple={true}
-					style={{
-						margin: '25px',
-						marginBottom: '0',
-						fontSize: '18px',
-						// fontFamily: 'Ubuntu',
-						fontWeight: 550,
-					}}
-				/>
-				<Tab
-					className={classes.tabItem}
-					to='/best'
-					component={Link}
-					label='Best'
-					disableRipple={true}
-					style={{
-						margin: '25px',
-						marginBottom: '0',
-						fontSize: '18px',
-						// fontFamily: 'Ubuntu',
-						fontWeight: 550,
-					}}
-				/>
-				<Tab
-					className={classes.tabItem}
-					to='/addYourOwn'
-					component={Link}
-					label='Add Your Own'
-					disableRipple={true}
-					style={{
-						margin: '25px',
-						marginBottom: '0',
-						fontSize: '18px',
-						// fontFamily: 'Ubuntu',
-						fontWeight: 550,
-					}}
-				/>
-			</Tabs>
-
+			<div className={classes.navTabs}>
+				<Tabs
+					value={value}
+					onChange={handleChange}
+					textColor='inherit'
+					TabIndicatorProps={{ style: { background: 'black' } }}
+					style={{}}>
+					<Tab
+						className={classes.tabItem}
+						to='/trending'
+						component={Link}
+						label='Trending'
+						disableRipple={true}
+						style={{
+							margin: '25px',
+							marginBottom: '0',
+							fontSize: '18px',
+							// fontFamily: 'Ubuntu',
+							fontWeight: 550,
+						}}
+					/>
+					<Tab
+						className={classes.tabItem}
+						to='/best'
+						component={Link}
+						label='Best'
+						disableRipple={true}
+						style={{
+							margin: '25px',
+							marginBottom: '0',
+							fontSize: '18px',
+							// fontFamily: 'Ubuntu',
+							fontWeight: 550,
+						}}
+					/>
+					<Tab
+						className={classes.tabItem}
+						to='/addYourOwn'
+						component={Link}
+						label='Add Your Own'
+						disableRipple={true}
+						style={{
+							margin: '25px',
+							marginBottom: '0',
+							fontSize: '18px',
+							// fontFamily: 'Ubuntu',
+							fontWeight: 550,
+						}}
+					/>
+				</Tabs>
+			</div>
 			<IconButton>
 				<AccountCircleOutlinedIcon
 					style={{
