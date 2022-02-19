@@ -9,6 +9,13 @@ import AddYourOwn from './components/AddYourOwn';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+// to do
+// 1. hook up front end and backend
+// 2. display navbar according to the size of the screen
+// 3. reduce the size of the chess board for small screens
+// 4. loader
+// 5. upvote and downvote button
+
 const theme = createTheme({
 	typography: {
 		fontFamily: [
