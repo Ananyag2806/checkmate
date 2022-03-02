@@ -10,11 +10,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 // to do
-// 1. hook up front end and backend
-// 2. display navbar according to the size of the screen
-// 3. reduce the size of the chess board for small screens
+// 1. display navbar according to the size of the screen
+// 2. reduce the size of the chess board for small screens
+// 3. hook up front end and backend
 // 4. loader
-// 5. upvote and downvote button
+//      5. add upvote and downvote button
+//      6. pass the whole object insted of just the array
 
 const theme = createTheme({
 	typography: {
@@ -39,7 +40,7 @@ function App() {
 		<Router>
 			<Fragment>
 				<ThemeProvider theme={theme}>
-					<Navbar />
+					{/* <Navbar /> */}
 					<Routes>
 						<Route path='/' element={<Landing />} />
 						<Route exact path='/trending' element={<Trending />} />

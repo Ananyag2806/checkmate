@@ -2,9 +2,12 @@ import { useRef, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
 import Chess from 'chess.js';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
+import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
+import IconButton from '@mui/material/IconButton';
+
 import bB from './media/bB.png';
 // import bK from './media/bK.png';
 // import bN from './media/bN.png';
@@ -35,8 +38,17 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function ChessBoard({ moves }) {
+export default function ChessBoard({
+	moves,
+	bestMoves,
+	flip,
+	whiteToPlay,
+	upvotes,
+	downvotes,
+}) {
 	const classes = useStyles();
+
+	const color = flip ? 'black' : 'white';
 
 	const [currMove, setCurrMove] = useState(0);
 	// console.log(currMove + ' outer');
@@ -102,15 +114,28 @@ export default function ChessBoard({ moves }) {
 					borderRadius: '4px',
 					boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
 				}}
+				boardOrientation={flip ? 'black' : 'white'}
 				customDarkSquareStyle={{ backgroundColor: '#A1B57D' }}
 				// customDarkSquareStyle={{ backgroundColor: '#D6E5FA' }}
 				customLightSquareStyle={{ backgroundColor: '#F7F7EE' }}
 				customPieces={customPieces()}
 				ref={chessboardRef}
 			/>
-
+			<div style={{ display: 'flex' }}>
+				<IconButton>
+					<ArrowUpwardOutlinedIcon
+						style={{ color: 'green', fontSize: '30px' }}
+					/>
+				</IconButton>
+				<h3 style={{ alignSelf: 'center' }}>123</h3>
+				<IconButton>
+					<ArrowDownwardOutlinedIcon
+						style={{ color: 'red', fontSize: '30px' }}
+					/>
+				</IconButton>
+			</div>
 			{/* Added inline style becaues useStyles gets overidden due to a bug */}
-			<div className={classes.buttonContainer}>
+			{/* <div className={classes.buttonContainer}>
 				<Button
 					style={{
 						margin: '20px',
@@ -152,7 +177,7 @@ export default function ChessBoard({ moves }) {
 					Next
 					<ArrowForwardIosIcon className={classes.arrow} />
 				</Button>
-			</div>
+			</div> */}
 		</div>
 	);
 }

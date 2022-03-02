@@ -1,6 +1,9 @@
 import React from 'react';
 import ChessBoard from './ChessBoard';
 import { makeStyles } from '@mui/styles';
+import IconButton from '@mui/material/IconButton';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const useStyles = makeStyles({
 	board: {
@@ -8,12 +11,28 @@ const useStyles = makeStyles({
 		display: 'flex',
 		justifyContent: 'center',
 	},
+	nav: {
+		height: 'fit-content',
+	},
+	btn: {
+		height: 'fitContent',
+		fontSize: '30px',
+	},
 });
 
 function Best() {
 	const classes = useStyles();
+
 	return (
 		<div className={classes.board}>
+			<IconButton
+				style={{ height: 'fit-content', alignSelf: 'center' }}
+				className={classes.nav}>
+				<ChevronLeftIcon
+					style={{ fontSize: '60px' }}
+					className={classes.btn}
+				/>
+			</IconButton>
 			<ChessBoard
 				moves={[
 					'r1b1kbnr/pppp1ppp/2n2q2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4',
@@ -22,7 +41,17 @@ function Best() {
 					'r1b1kbnr/pppp1ppp/2nq4/3Np3/2B1P3/5N2/PPPP1PPP/R1BQK2R b KQkq - 7 5',
 					'r1b1kbnr/pppp1pp1/2nq3p/3Np3/2B1P3/5N2/PPPP1PPP/R1BQK2R w KQkq - 0 6',
 				]}
+				bestMoves={[3, 4]}
+				flip={true}
+				whiteToPlay={true}
+				upvotes={2}
+				downvotes={0}
 			/>
+			<IconButton
+				style={{ height: 'fit-content', alignSelf: 'center' }}
+				className={classes.nav}>
+				<ChevronRightIcon style={{ fontSize: '60px' }} />
+			</IconButton>
 		</div>
 	);
 }
