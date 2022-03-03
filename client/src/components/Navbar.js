@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 		boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.2)',
 		display: 'flex',
 		justifyContent: 'space-between',
-		indicatorColor: 'black',
 	},
 	logo: {
 		height: '85px',

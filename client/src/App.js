@@ -2,6 +2,7 @@ import './App.css';
 import { Fragment } from 'react';
 import Navbar from './components/Navbar';
 import NavbarSmall from './components/NavbarSmall';
+import LogoSmallScreen from './components/LogoSmallScreen';
 import Landing from './components/Landing';
 import Trending from './components/Trending';
 import Best from './components/Best';
@@ -41,6 +42,7 @@ function App() {
 			<Fragment>
 				<ThemeProvider theme={theme}>
 					{window.screen.width >= 900 && <Navbar />}
+					{window.screen.width < 900 && <LogoSmallScreen />}
 
 					<Routes>
 						<Route path='/' element={<Landing />} />
