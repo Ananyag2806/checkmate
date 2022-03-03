@@ -25,14 +25,14 @@ function Best() {
 
 	return (
 		<div className={classes.board}>
-			<IconButton
+			{/* <IconButton
 				style={{ height: 'fit-content', alignSelf: 'center' }}
 				className={classes.nav}>
 				<ChevronLeftIcon
 					style={{ fontSize: '60px' }}
 					className={classes.btn}
 				/>
-			</IconButton>
+			</IconButton> */}
 			<ChessBoard
 				moves={[
 					'r1b1kbnr/pppp1ppp/2n2q2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4',
@@ -47,11 +47,11 @@ function Best() {
 				upvotes={2}
 				downvotes={0}
 			/>
-			<IconButton
+			{/* <IconButton
 				style={{ height: 'fit-content', alignSelf: 'center' }}
 				className={classes.nav}>
 				<ChevronRightIcon style={{ fontSize: '60px' }} />
-			</IconButton>
+			</IconButton> */}
 		</div>
 	);
 }

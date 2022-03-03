@@ -6,6 +6,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import IconButton from '@mui/material/IconButton';
 
 import bB from './media/bB.png';
@@ -34,7 +35,7 @@ const useStyles = makeStyles({
 		justifyContent: 'center',
 	},
 	arrow: {
-		margin: '10px',
+		margin: '15px',
 	},
 });
 
@@ -107,6 +108,7 @@ export default function ChessBoard({
 		<div>
 			<Chessboard
 				id='RandomVsRandom'
+				boardWidth={350}
 				arePiecesDraggable={false}
 				position={game.fen()}
 				animationDuration={200}
@@ -121,7 +123,7 @@ export default function ChessBoard({
 				customPieces={customPieces()}
 				ref={chessboardRef}
 			/>
-			<div style={{ display: 'flex' }}>
+			<div style={{ display: 'flex', justifyContent: 'center' }}>
 				<IconButton>
 					<ArrowUpwardOutlinedIcon
 						style={{ color: 'green', fontSize: '30px' }}
@@ -132,6 +134,15 @@ export default function ChessBoard({
 					<ArrowDownwardOutlinedIcon
 						style={{ color: 'red', fontSize: '30px' }}
 					/>
+				</IconButton>
+				<IconButton onClick={() => prevMove(currMove)}>
+					<ArrowBackIosNewIcon className={classes.arrow} />
+				</IconButton>
+				<IconButton onClick={() => setCurrMove(0)}>
+					<ReplayRoundedIcon className={classes.arrow} />
+				</IconButton>
+				<IconButton onClick={() => nextMove(currMove)}>
+					<ArrowForwardIosIcon className={classes.arrow} />
 				</IconButton>
 			</div>
 			{/* Added inline style becaues useStyles gets overidden due to a bug */}
