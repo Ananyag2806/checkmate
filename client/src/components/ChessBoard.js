@@ -26,6 +26,9 @@ import bB from './media/bB.png';
 import { Chessboard } from 'react-chessboard';
 
 const useStyles = makeStyles({
+	root: {
+		textAlign: 'center',
+	},
 	button: {
 		margin: '100px',
 		color: 'black',
@@ -36,6 +39,11 @@ const useStyles = makeStyles({
 	},
 	arrow: {
 		margin: '15px',
+		color: '#FFB72B',
+	},
+	reset: {
+		margin: '15px',
+		color: '#003F5C',
 	},
 });
 
@@ -74,6 +82,7 @@ export default function ChessBoard({
 		currMove - 1 >= 0 && setCurrMove(currMove - 1);
 		// console.log(currMove);
 	};
+	console.log(window.screen.width);
 	const pieces = [
 		'wP',
 		'wN',
@@ -107,8 +116,12 @@ export default function ChessBoard({
 	return (
 		<div>
 			<Chessboard
+				style={{ textAlign: 'center' }}
+				className={classes.root}
 				id='RandomVsRandom'
-				boardWidth={350}
+				boardWidth={
+					window.screen.width < 600 ? 0.9 * window.screen.width : 560
+				}
 				arePiecesDraggable={false}
 				position={game.fen()}
 				animationDuration={200}
@@ -126,20 +139,20 @@ export default function ChessBoard({
 			<div style={{ display: 'flex', justifyContent: 'center' }}>
 				<IconButton>
 					<ArrowUpwardOutlinedIcon
-						style={{ color: 'green', fontSize: '30px' }}
+						style={{ color: '#00C897', fontSize: '30px' }}
 					/>
 				</IconButton>
 				<h3 style={{ alignSelf: 'center' }}>123</h3>
 				<IconButton>
 					<ArrowDownwardOutlinedIcon
-						style={{ color: 'red', fontSize: '30px' }}
+						style={{ color: '#D82148', fontSize: '30px' }}
 					/>
 				</IconButton>
 				<IconButton onClick={() => prevMove(currMove)}>
 					<ArrowBackIosNewIcon className={classes.arrow} />
 				</IconButton>
 				<IconButton onClick={() => setCurrMove(0)}>
-					<ReplayRoundedIcon className={classes.arrow} />
+					<ReplayRoundedIcon className={classes.reset} />
 				</IconButton>
 				<IconButton onClick={() => nextMove(currMove)}>
 					<ArrowForwardIosIcon className={classes.arrow} />

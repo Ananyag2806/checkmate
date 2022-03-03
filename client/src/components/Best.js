@@ -2,21 +2,21 @@ import React from 'react';
 import ChessBoard from './ChessBoard';
 import { makeStyles } from '@mui/styles';
 import IconButton from '@mui/material/IconButton';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const useStyles = makeStyles({
-	board: {
+	root: {
 		margin: '30px',
-		display: 'flex',
+		display: 'grid',
 		justifyContent: 'center',
+		textAlign: 'center',
 	},
-	nav: {
-		height: 'fit-content',
-	},
-	btn: {
-		height: 'fitContent',
-		fontSize: '30px',
+	btnGrp: {
+		justifyContent: 'center',
+		marginBottom: '50px',
 	},
 });
 
@@ -24,15 +24,7 @@ function Best() {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.board}>
-			{/* <IconButton
-				style={{ height: 'fit-content', alignSelf: 'center' }}
-				className={classes.nav}>
-				<ChevronLeftIcon
-					style={{ fontSize: '60px' }}
-					className={classes.btn}
-				/>
-			</IconButton> */}
+		<div className={classes.root}>
 			<ChessBoard
 				moves={[
 					'r1b1kbnr/pppp1ppp/2n2q2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4',
@@ -47,11 +39,20 @@ function Best() {
 				upvotes={2}
 				downvotes={0}
 			/>
-			{/* <IconButton
-				style={{ height: 'fit-content', alignSelf: 'center' }}
-				className={classes.nav}>
-				<ChevronRightIcon style={{ fontSize: '60px' }} />
-			</IconButton> */}
+
+			<ButtonGroup
+				color='primary'
+				aria-label='outlined primary button group'
+				className={classes.btnGrp}>
+				<Button>
+					<ChevronLeftIcon />
+					Back
+				</Button>
+				<Button>
+					Next
+					<ChevronRightIcon />
+				</Button>
+			</ButtonGroup>
 		</div>
 	);
 }
