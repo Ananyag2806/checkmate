@@ -10,8 +10,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 // to do
-// 1. display navbar according to the size of the screen
-// 2. reduce the size of the chess board for small screens
+//      1. display navbar according to the size of the screen
+//      2. reduce the size of the chess board for small screens
 // 3. hook up front end and backend
 // 4. loader
 //      5. add upvote and downvote button
@@ -40,7 +40,8 @@ function App() {
 		<Router>
 			<Fragment>
 				<ThemeProvider theme={theme}>
-					{/* <Navbar /> */}
+					{window.screen.width >= 900 && <Navbar />}
+
 					<Routes>
 						<Route path='/' element={<Landing />} />
 						<Route exact path='/trending' element={<Trending />} />
@@ -51,7 +52,8 @@ function App() {
 							element={<AddYourOwn />}
 						/>
 					</Routes>
-					<NavbarSmall />
+					{window.screen.width < 900 && <NavbarSmall />}
+					{/* <NavbarSmall /> */}
 				</ThemeProvider>
 			</Fragment>
 		</Router>
