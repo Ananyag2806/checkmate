@@ -25,37 +25,24 @@ const useStyles = makeStyles({
 function Best() {
 	const [isLoading, setLoading] = useState(true);
 
-	const [post, setPost] = useState({});
-	const [data, setData] = useState({});
-	const [moves, setMoves] = useState([]);
-	const [bestMoves, setBestMoves] = useState([]);
-	const [flip, setFlip] = useState();
-	const [whiteToPlay, setWhiteToPlay] = useState();
-	const [upvotes, setUpvotes] = useState([]);
-	const [downvotes, setDownvotes] = useState([]);
+	const [posts, setPosts] = useState([]);
+	const [curPost, setCurPost] = useState(0);
+	const [curMove, setCurMove] = useState(0);
+
+	const prevPost = (curPost) => {
+		curPost - 1 >= 0 && setCurPost(curPost - 1);
+	};
+	const nextPost = (curPost) => {
+		curPost + 1 < posts.length && setCurPost(curPost + 1);
+	};
 
 	const classes = useStyles();
-	console.log(moves);
-	console.log(post);
-
-	// useEffect(() => {
-	// 	axios
-	// 		.get('http://localhost:5000/api/posts/622709fec3864e9049a6ba0a')
-	// 		.then((res) => {
-	// 			setPost(res.data);
-	// 		})
-	// 		.catch((e) => {
-	// 			console.log(e);
-	// 		});
-	// }, []);
 
 	useEffect(() => {
 		async function fetchData() {
-			const res = await axios.get(
-				'http://localhost:5000/api/posts/622709fec3864e9049a6ba0a'
-			);
+			const res = await axios.get('http://localhost:5000/api/posts');
 
-			setPost(res.data);
+			setPosts(res.data);
 			setLoading(false);
 		}
 
@@ -66,26 +53,38 @@ function Best() {
 		return <div className='App'>Loading...</div>;
 	}
 
+	// console.log(posts[curPost].moves);
+
 	return (
 		<div className={classes.root}>
 			<ChessBoard
-				moves={post.moves}
-				bestMoves={post.bestMoves}
-				flip={post.flip}
-				whiteToPlay={post.whiteToPlay}
-				upvotes={post.upvotes}
-				downvotes={post.downvotes}
+				currentMove={curMove}
+				currentPost={curPost}
+				moves={posts[curPost].moves}
+				bestMoves={posts[curPost].bestMoves}
+				flip={posts[curPost].flip}
+				whiteToPlay={posts[curPost].whiteToPlay}
+				upvotes={posts[curPost].upvotes}
+				downvotes={posts[curPost].downvotes}
 			/>
 
 			<ButtonGroup
 				color='primary'
 				aria-label='outlined primary button group'
 				className={classes.btnGrp}>
-				<Button>
+				<Button
+					onClick={() => {
+						setCurMove(0);
+						prevPost(curPost);
+					}}>
 					<ChevronLeftIcon />
 					Back
 				</Button>
-				<Button>
+				<Button
+					onClick={() => {
+						setCurMove(0);
+						nextPost(curPost);
+					}}>
 					Next
 					<ChevronRightIcon />
 				</Button>

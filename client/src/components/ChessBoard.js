@@ -48,6 +48,8 @@ const useStyles = makeStyles({
 });
 
 export default function ChessBoard({
+	currentMove = 0,
+	currentPost,
 	moves,
 	bestMoves,
 	flip,
@@ -64,7 +66,14 @@ export default function ChessBoard({
 	const chessboardRef = useRef();
 	const [game, setGame] = useState(new Chess());
 
-	game.load(moves[currMove]);
+	const refreshGame = () => {
+		setCurrMove(0);
+		game.load(moves[currMove]);
+	};
+
+	useEffect(() => {
+		refreshGame();
+	}, [currentPost]);
 
 	function safeGameMutate(modify) {
 		setGame((g) => {
@@ -73,16 +82,14 @@ export default function ChessBoard({
 			return update;
 		});
 	}
+	console.log(currMove);
 
 	const nextMove = (currMove) => {
 		currMove + 1 < moves.length && setCurrMove(currMove + 1);
-		// console.log(currMove);
 	};
 	const prevMove = (currMove) => {
 		currMove - 1 >= 0 && setCurrMove(currMove - 1);
-		// console.log(currMove);
 	};
-	console.log(window.screen.width);
 	const pieces = [
 		'wP',
 		'wN',
@@ -113,6 +120,7 @@ export default function ChessBoard({
 		});
 		return returnPieces;
 	};
+	game.load(moves[currMove]);
 	return (
 		<div>
 			<Chessboard
@@ -158,50 +166,6 @@ export default function ChessBoard({
 					<ArrowForwardIosIcon className={classes.arrow} />
 				</IconButton>
 			</div>
-			{/* Added inline style becaues useStyles gets overidden due to a bug */}
-			{/* <div className={classes.buttonContainer}>
-				<Button
-					style={{
-						margin: '20px',
-						padding: '10px',
-						color: 'white',
-						backgroundColor: 'black',
-						fontSize: '15px',
-						width: '120px',
-					}}
-					variant='contained'
-					onClick={() => prevMove(currMove)}>
-					<ArrowBackIosNewIcon className={classes.arrow} />
-					Back
-				</Button>
-				<Button
-					style={{
-						margin: '20px',
-						padding: '10px',
-						color: 'white',
-						backgroundColor: 'black',
-						fontSize: '15px',
-						width: '90px',
-					}}
-					variant='contained'
-					onClick={() => setCurrMove(0)}>
-					Reset
-				</Button>
-				<Button
-					style={{
-						margin: '20px',
-						padding: '10px',
-						color: 'white',
-						backgroundColor: 'black',
-						fontSize: '15px',
-						width: '120px',
-					}}
-					variant='contained'
-					onClick={() => nextMove(currMove)}>
-					Next
-					<ArrowForwardIosIcon className={classes.arrow} />
-				</Button>
-			</div> */}
 		</div>
 	);
 }
