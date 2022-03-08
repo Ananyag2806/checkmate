@@ -142,7 +142,7 @@ export default function ChessBoard({
 						style={{ color: '#00C897', fontSize: '30px' }}
 					/>
 				</IconButton>
-				<h3 style={{ alignSelf: 'center' }}>123</h3>
+				<h3 style={{ alignSelf: 'center' }}>{upvotes - downvotes}</h3>
 				<IconButton>
 					<ArrowDownwardOutlinedIcon
 						style={{ color: '#D82148', fontSize: '30px' }}

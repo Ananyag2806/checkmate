@@ -46,8 +46,9 @@ router.post(
 //@route    GET api/posts
 //@desc     create a post
 //@access   private
+// removed auth from request
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
 	try {
 		const posts = await Post.find();
 		res.json(posts);
@@ -60,8 +61,9 @@ router.get('/', auth, async (req, res) => {
 //@route    GET api/posts/:id
 //@desc     get posts by ID
 //@access   private
+// removed auth from request
 
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
 	try {
 		const post = await Post.findById(req.params.id);
 		if (!post) {

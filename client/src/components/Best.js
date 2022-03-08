@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import ChessBoard from './ChessBoard';
 import { makeStyles } from '@mui/styles';
 import IconButton from '@mui/material/IconButton';
@@ -21,23 +23,58 @@ const useStyles = makeStyles({
 });
 
 function Best() {
+	const [isLoading, setLoading] = useState(true);
+
+	const [post, setPost] = useState({});
+	const [data, setData] = useState({});
+	const [moves, setMoves] = useState([]);
+	const [bestMoves, setBestMoves] = useState([]);
+	const [flip, setFlip] = useState();
+	const [whiteToPlay, setWhiteToPlay] = useState();
+	const [upvotes, setUpvotes] = useState([]);
+	const [downvotes, setDownvotes] = useState([]);
+
 	const classes = useStyles();
+	console.log(moves);
+	console.log(post);
+
+	// useEffect(() => {
+	// 	axios
+	// 		.get('http://localhost:5000/api/posts/622709fec3864e9049a6ba0a')
+	// 		.then((res) => {
+	// 			setPost(res.data);
+	// 		})
+	// 		.catch((e) => {
+	// 			console.log(e);
+	// 		});
+	// }, []);
+
+	useEffect(() => {
+		async function fetchData() {
+			const res = await axios.get(
+				'http://localhost:5000/api/posts/622709fec3864e9049a6ba0a'
+			);
+
+			setPost(res.data);
+			setLoading(false);
+		}
+
+		fetchData();
+	}, []);
+
+	if (isLoading) {
+		return <div className='App'>Loading...</div>;
+	}
 
 	return (
 		<div className={classes.root}>
 			<ChessBoard
-				moves={[
-					'r1b1kbnr/pppp1ppp/2n2q2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4',
-					'r1b1kbnr/pppp1ppp/2n2q2/3Np3/4P3/5N2/PPPP1PPP/R1BQKB1R b KQkq - 5 4',
-					'r1b1kbnr/pppp1ppp/2nq4/3Np3/4P3/5N2/PPPP1PPP/R1BQKB1R w KQkq - 6 5',
-					'r1b1kbnr/pppp1ppp/2nq4/3Np3/2B1P3/5N2/PPPP1PPP/R1BQK2R b KQkq - 7 5',
-					'r1b1kbnr/pppp1pp1/2nq3p/3Np3/2B1P3/5N2/PPPP1PPP/R1BQK2R w KQkq - 0 6',
-				]}
-				bestMoves={[3, 4]}
-				flip={true}
-				whiteToPlay={true}
-				upvotes={2}
-				downvotes={0}
+				moves={post.moves}
+				bestMoves={post.bestMoves}
+				flip={post.flip}
+				whiteToPlay={post.whiteToPlay}
+				upvotes={post.upvotes}
+				downvotes={post.downvotes}
 			/>
 
 			<ButtonGroup
