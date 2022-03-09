@@ -2,6 +2,7 @@ import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
+import { css } from '@emotion/react';
 import Chess from 'chess.js';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -12,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import PacmanLoader from 'react-spinners/PacmanLoader';
 
 import axios from 'axios';
 
@@ -30,6 +32,13 @@ import bB from './media/bB.png';
 // import wR from './media/wR.png';
 
 import { Chessboard } from 'react-chessboard';
+
+const override = css`
+	position: fixed;
+	top: 50%;
+	left: 45%;
+	transform: translate(-50%, -50%);
+`;
 
 const useStyles = makeStyles({
 	root: {
@@ -133,7 +142,7 @@ const Best = () => {
 		return returnPieces;
 	};
 	if (isLoading) {
-		return <div className='App'>Loading...</div>;
+		return <PacmanLoader size={20} css={override} color={'#A1B57D'} />;
 	}
 	game.load(posts[curPost].moves[curMove]);
 	return (

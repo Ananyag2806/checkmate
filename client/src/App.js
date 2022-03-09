@@ -5,11 +5,10 @@ import NavbarSmall from './components/NavbarSmall';
 import LogoSmallScreen from './components/LogoSmallScreen';
 import Landing from './components/Landing';
 import Trending from './components/Trending';
-import Best from './components/BestOld';
+import Best from './components/Best';
 import AddYourOwn from './components/AddYourOwn';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Bestnew from './components/Best';
 
 // to do
 //      1. display navbar according to the size of the screen
