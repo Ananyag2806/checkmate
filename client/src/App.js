@@ -14,7 +14,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 //      1. display navbar according to the size of the screen
 //      2. reduce the size of the chess board for small screens
 //      3. hook up front end and backend
-// 4. loader
+//      4. loader
 //      5. add upvote and downvote button
 //      6. pass the whole object insted of just the array
 
@@ -55,7 +55,6 @@ function App() {
 						/>
 					</Routes>
 					{window.screen.width < 900 && <NavbarSmall />}
-					{/* <NavbarSmall /> */}
 				</ThemeProvider>
 			</Fragment>
 		</Router>
