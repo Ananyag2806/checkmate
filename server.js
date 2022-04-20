@@ -22,6 +22,7 @@ app.use(function (req, res, next) {
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/posts', require('./routes/api/posts'));
+app.use('/api/emails', require('./routes/api/emails'));
 // app.use('/api/profile', require('./routes/api/profile'));
 
 const PORT = process.env.PORT || 5000;
