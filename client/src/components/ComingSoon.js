@@ -1,10 +1,12 @@
 import React from 'react';
+import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
 import underConstruct from './media/page-under-construction.png';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 
 const useStyles = makeStyles({
 	image: {
@@ -28,6 +30,13 @@ const useStyles = makeStyles({
 
 function ComingSoon() {
 	const classes = useStyles();
+	const [email, setEmail] = useState('');
+
+	const submit = () => {
+		axios.post('http://localhost:5000/api/emails', {
+			email: email,
+		});
+	};
 
 	return (
 		<div>
@@ -62,8 +71,12 @@ function ComingSoon() {
 							variant='outlined'
 							color='secondary'
 							fullWidth={true}
+							onChange={(event) => {
+								setEmail(event.target.value);
+							}}
 						/>
 						<Button
+							onClick={submit}
 							style={{
 								marginTop: '20px',
 								padding: '10px',
