@@ -14,6 +14,8 @@ router.post(
 	[
 		auth,
 		[
+			check('heading', 'Heading is required').not().isEmpty(),
+			check('caption', 'Caption is required').not().isEmpty(),
 			check('moves', 'Moves are required').not().isEmpty(),
 			check('bestMoves', 'bestMoves are required').not().isEmpty(),
 		],
@@ -29,6 +31,8 @@ router.post(
 
 			const newPost = new Post({
 				user: req.user.id,
+				heading: req.body.heading,
+				caption: req.body.caption,
 				moves: req.body.moves,
 				bestMoves: req.body.bestMoves,
 				flip: req.body.flip,
@@ -44,7 +48,7 @@ router.post(
 );
 
 //@route    GET api/posts
-//@desc     create a post
+//@desc     get all posts
 //@access   private
 // removed auth from request
 
