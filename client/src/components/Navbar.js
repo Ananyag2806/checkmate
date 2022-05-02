@@ -6,6 +6,8 @@ import logo from './media/checkmate.png';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -56,6 +58,15 @@ function Navbar() {
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
+	};
+
+	const [anchorEl, setAnchorEl] = React.useState(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
 	};
 
 	const classes = useStyles();
@@ -135,9 +146,28 @@ function Navbar() {
 						margin: '10px',
 						alignSelf: 'center',
 					}}
+					onClick={handleClick}
 					// className={classes.profile}
 				/>
 			</IconButton>
+			<Menu
+				id='basic-menu'
+				anchorEl={anchorEl}
+				open={open}
+				onClose={handleClose}
+				MenuListProps={{
+					'aria-labelledby': 'basic-button',
+				}}>
+				<MenuItem to='/trending' component={Link} onClick={handleClose}>
+					Profile
+				</MenuItem>
+				<MenuItem to='/login' component={Link} onClick={handleClose}>
+					Login
+				</MenuItem>
+				<MenuItem to='/signUp' component={Link} onClick={handleClose}>
+					Sign Up
+				</MenuItem>
+			</Menu>
 		</div>
 	);
 }

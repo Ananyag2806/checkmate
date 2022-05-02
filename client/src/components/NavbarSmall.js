@@ -7,11 +7,14 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import TrendingUpOutlinedIcon from '@mui/icons-material/TrendingUpOutlined';
 import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
 	nav: {
 		fontSize: '20px',
+		padding: '0px',
 	},
 	navBar: {
 		width: '100%',
@@ -37,6 +40,7 @@ function NavbarSmall() {
 					}}>
 					<BottomNavigationAction
 						className={classes.nav}
+						style={{ padding: '0px', minWidth: '0px' }}
 						component={Link}
 						to='/'
 						label='Home'
@@ -44,6 +48,7 @@ function NavbarSmall() {
 					/>
 					<BottomNavigationAction
 						className={classes.nav}
+						style={{ padding: '0px', minWidth: '0px' }}
 						component={Link}
 						to='/trending'
 						label='Trending'
@@ -51,6 +56,7 @@ function NavbarSmall() {
 					/>
 					<BottomNavigationAction
 						className={classes.nav}
+						style={{ padding: '0px', minWidth: '0px' }}
 						component={Link}
 						to='/best'
 						label='Best'
@@ -58,10 +64,19 @@ function NavbarSmall() {
 					/>
 					<BottomNavigationAction
 						className={classes.nav}
+						style={{ padding: '0px', minWidth: '0px' }}
 						component={Link}
 						to='/addYourOwn'
 						label='Add Yours'
 						icon={<AddCircleOutlineOutlinedIcon />}
+					/>
+					<BottomNavigationAction
+						className={classes.nav}
+						style={{ padding: '0px', minWidth: '0px' }}
+						component={Link}
+						to='/addYourOwn'
+						label='Profile'
+						icon={<AccountCircleOutlinedIcon />}
 					/>
 				</BottomNavigation>
 			</Paper>
