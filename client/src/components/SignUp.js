@@ -17,11 +17,20 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'center',
 		width: '100%',
 		height: '100vh',
+		[theme.breakpoints.down('450')]: {
+			background: '#ffffff',
+		},
 	},
 	main: {
 		display: 'flex',
 		width: '90%',
 		margin: 'auto',
+		[theme.breakpoints.down('600')]: {
+			display: 'block',
+		},
+		[theme.breakpoints.down('450')]: {
+			width: '100%',
+		},
 	},
 	half1: {
 		width: '50%',
@@ -31,6 +40,15 @@ const useStyles = makeStyles((theme) => ({
 		display: 'grid',
 		borderTopLeftRadius: '7px',
 		borderBottomLeftRadius: '7px',
+		[theme.breakpoints.down('600')]: {
+			width: '90%',
+			padding: '20px',
+			borderRadius: '0px',
+		},
+		[theme.breakpoints.down('450')]: {
+			width: '96%',
+			padding: '2%',
+		},
 	},
 	half2: {
 		width: '50%',
@@ -39,6 +57,16 @@ const useStyles = makeStyles((theme) => ({
 		display: 'grid',
 		borderTopRightRadius: '7px',
 		borderBottomRightRadius: '7px',
+		[theme.breakpoints.down('600')]: {
+			width: '90%',
+			padding: '20px',
+			marginBottom: '70px',
+			borderRadius: '0px',
+		},
+		[theme.breakpoints.down('450')]: {
+			width: '96%',
+			padding: '2%',
+		},
 	},
 	textField: {
 		margin: '15px',
@@ -50,6 +78,9 @@ const useStyles = makeStyles((theme) => ({
 
 	img: {
 		width: '90%',
+		[theme.breakpoints.down('600')]: {
+			width: '40%',
+		},
 	},
 }));
 
