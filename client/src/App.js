@@ -7,6 +7,7 @@ import Landing from './components/Landing';
 import Trending from './components/Trending';
 import Best from './components/Best';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import AddYourOwn from './components/AddYourOwn';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -50,6 +51,7 @@ function App() {
 						<Route exact path='/trending' element={<Trending />} />
 						<Route exact path='/best' element={<Best />} />
 						<Route exact path='/login' element={<Login />} />
+						<Route exact path='/signUp' element={<SignUp />} />
 						<Route
 							exact
 							path='/addYourOwn'

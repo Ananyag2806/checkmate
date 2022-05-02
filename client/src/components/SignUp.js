@@ -1,10 +1,11 @@
 import React from 'react';
-import login from './media/login.png';
+import signUp from './media/signUp.png';
 import { makeStyles } from '@mui/styles';
 import { Button } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import DividerWithText from './DividerWithText';
 import { styled } from '@mui/material/styles';
@@ -79,11 +80,11 @@ function Login() {
 		<div className={classes.root}>
 			<div className={classes.main}>
 				<div className={classes.half1}>
-					<img className={classes.img} src={login}></img>
+					<img className={classes.img} src={signUp}></img>
 				</div>
 				<div className={classes.half2}>
 					<h2>Let's get started</h2>
-					<p>First time here? Register</p>
+					<p>Alerdy registered? Login</p>
 					<Button
 						className={classes.google}
 						style={{
@@ -91,17 +92,32 @@ function Login() {
 							marginTop: '10px',
 						}}
 						variant='contained'>
-						Login with google
+						Sign Up with google
 					</Button>
 
 					<DividerWithText>or</DividerWithText>
 
 					<TextFieldCustom
 						id='input-with-icon-textfield'
-						label='Email Address'
+						label='Name'
 						className={classes.textField}
 						style={{ marginTop: '10px' }}
 						required
+						InputProps={{
+							startAdornment: (
+								<InputAdornment position='start'>
+									<AlternateEmailOutlinedIcon />
+								</InputAdornment>
+							),
+						}}
+						variant='standard'
+					/>
+					<TextFieldCustom
+						id='input-with-icon-textfield'
+						label='Email Address'
+						className={classes.textField}
+						required
+						style={{ marginTop: '10px' }}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position='start'>
@@ -126,6 +142,21 @@ function Login() {
 						}}
 						variant='standard'
 					/>
+					<TextFieldCustom
+						id='input-with-icon-textfield'
+						label='Confirm Password'
+						className={classes.textField}
+						style={{ marginTop: '10px' }}
+						required={true}
+						InputProps={{
+							startAdornment: (
+								<InputAdornment position='start'>
+									<LockOutlinedIcon />
+								</InputAdornment>
+							),
+						}}
+						variant='standard'
+					/>
 					<Button
 						style={{
 							backgroundColor: '#92E3A9',
@@ -133,7 +164,7 @@ function Login() {
 						}}
 						className={classes.login}
 						variant='contained'>
-						Login
+						Register
 					</Button>
 				</div>
 			</div>

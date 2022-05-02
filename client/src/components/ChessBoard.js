@@ -138,9 +138,9 @@ export default function ChessBoard({
 					boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
 				}}
 				boardOrientation={flip ? 'black' : 'white'}
-				customDarkSquareStyle={{ backgroundColor: '#92E3A9' }}
+				customDarkSquareStyle={{ backgroundColor: '#112B3C' }}
 				// customDarkSquareStyle={{ backgroundColor: '#D6E5FA' }}
-				customLightSquareStyle={{ backgroundColor: '#F7F7EE' }}
+				customLightSquareStyle={{ backgroundColor: '#000000' }}
 				customPieces={customPieces()}
 				ref={chessboardRef}
 			/>

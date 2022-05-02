@@ -72,14 +72,28 @@ function Navbar() {
 				style={{}}>
 				<Tab
 					className={classes.tabItem}
+					to='/'
+					component={Link}
+					label='Home'
+					disableRipple={true}
+					style={{
+						margin: '20px',
+						marginBottom: '0',
+						fontSize: '15px',
+						// fontFamily: 'Ubuntu',
+						fontWeight: 550,
+					}}
+				/>
+				<Tab
+					className={classes.tabItem}
 					to='/trending'
 					component={Link}
 					label='Trending'
 					disableRipple={true}
 					style={{
-						margin: '25px',
+						margin: '20px',
 						marginBottom: '0',
-						fontSize: '18px',
+						fontSize: '15px',
 						// fontFamily: 'Ubuntu',
 						fontWeight: 550,
 					}}
@@ -91,9 +105,9 @@ function Navbar() {
 					label='Best'
 					disableRipple={true}
 					style={{
-						margin: '25px',
+						margin: '20px',
 						marginBottom: '0',
-						fontSize: '18px',
+						fontSize: '15px',
 						// fontFamily: 'Ubuntu',
 						fontWeight: 550,
 					}}
@@ -102,12 +116,12 @@ function Navbar() {
 					className={classes.tabItem}
 					to='/addYourOwn'
 					component={Link}
-					label='Add Your Own'
+					label='Add Yours'
 					disableRipple={true}
 					style={{
-						margin: '25px',
+						margin: '20px',
 						marginBottom: '0',
-						fontSize: '18px',
+						fontSize: '15px',
 						// fontFamily: 'Ubuntu',
 						fontWeight: 550,
 					}}

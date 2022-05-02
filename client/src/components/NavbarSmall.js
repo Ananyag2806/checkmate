@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import TrendingUpOutlinedIcon from '@mui/icons-material/TrendingUpOutlined';
 import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
@@ -37,6 +38,13 @@ function NavbarSmall() {
 					<BottomNavigationAction
 						className={classes.nav}
 						component={Link}
+						to='/'
+						label='Home'
+						icon={<HomeOutlinedIcon />}
+					/>
+					<BottomNavigationAction
+						className={classes.nav}
+						component={Link}
 						to='/trending'
 						label='Trending'
 						icon={<LocalFireDepartmentOutlinedIcon />}
@@ -52,7 +60,7 @@ function NavbarSmall() {
 						className={classes.nav}
 						component={Link}
 						to='/addYourOwn'
-						label='Add Your Own'
+						label='Add Yours'
 						icon={<AddCircleOutlineOutlinedIcon />}
 					/>
 				</BottomNavigation>
