@@ -117,9 +117,13 @@ function Landing() {
 				<h3 className={classes.author}>- Someone very famous</h3>
 				<h4 className={classes.intro}>
 					<br />
-					Here at Checkmate you can share such brilliant games with
-					each other so that we all can experience the satisfaction of
-					playing such a game.
+					Millions of games of chess are played each day by us. And
+					every once in a while, a position is created on the board
+					that enables the player to immediately change the fate of
+					the game whith one single move. Here at Checkmate, we want
+					you to share such extraordinary moves with the community so
+					that we all can experience the satisfaction of playing such
+					a game.
 				</h4>
 			</div>
 

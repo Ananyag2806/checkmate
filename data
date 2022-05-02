@@ -1,0 +1,279 @@
+{
+	"data": [
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "sdfsdf",
+			"caption": "sdfsdf",
+			"moves": [
+				"aaslkdlkj",
+				"d"
+			],
+			"bestMoves": [
+				"aaslkdlkj",
+				"d"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "Shirov's Jaw-Dropping Bishop Sacrifice",
+			"caption": "Opposite-colored bishop endgames are known to be notoriously drawish. Despite being up two pawns, Black's path to victory is not clear. If White can get their king to the center (to e3 or d4), there will be no way through. What makes this move even more amazing is that Shirov finds the only way to actually win this position.",
+			"moves": [
+				"8/8/4kpp1/3p1b2/p6P/2B5/6P1/6K1 w - - 1 48",
+				"8/8/4kpp1/3p4/p6P/2B4b/6P1/6K1 w - - 1 48",
+				"8/8/4kpp1/3p4/p6P/2B4P/8/6K1 w - - 1 48",
+				"8/8/5pp1/3p1k2/p6P/2B4P/8/6K1 w - - 1 48",
+				"8/8/5pp1/3p1k2/p6P/2B4P/5K2/8 w - - 1 48",
+				"8/8/5pp1/3p4/p3k2P/2B4P/5K2/8 w - - 1 48",
+				"8/8/5Bp1/3p4/p3k2P/7P/5K2/8 w - - 1 48",
+				"8/8/5Bp1/8/p2pk2P/7P/5K2/8 w - - 1 48",
+				"8/4B3/6p1/8/p2pk2P/7P/5K2/8 w - - 1 48",
+				"8/4B3/6p1/8/p2p3P/3k3P/5K2/8 w - - 1 48",
+				"8/8/6p1/2B5/p2p3P/3k3P/5K2/8 w - - 1 48",
+				"8/8/6p1/2B5/p1kp3P/7P/5K2/8 w - - 1 48",
+				"8/4B3/6p1/8/p1kp3P/7P/5K2/8 w - - 1 48",
+				"8/4B3/6p1/8/p2p3P/1k5P/5K2/8 w - - 1 48",
+				""
+			],
+			"bestMoves": [
+				"1"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "Shirov's Jaw-Dropping Bishop Sacrifice",
+			"caption": "Opposite-colored bishop endgames are known to be notoriously drawish. Despite being up two pawns, Black's path to victory is not clear. If White can get their king to the center (to e3 or d4), there will be no way through. What makes this move even more amazing is that Shirov finds the only way to actually win this position.",
+			"moves": [
+				"8/8/4kpp1/3p1b2/p6P/2B5/6P1/6K1 w - - 1 48",
+				"8/8/4kpp1/3p4/p6P/2B4b/6P1/6K1 w - - 1 48",
+				"8/8/4kpp1/3p4/p6P/2B4P/8/6K1 w - - 1 48",
+				"8/8/5pp1/3p1k2/p6P/2B4P/8/6K1 w - - 1 48",
+				"8/8/5pp1/3p1k2/p6P/2B4P/5K2/8 w - - 1 48",
+				"8/8/5pp1/3p4/p3k2P/2B4P/5K2/8 w - - 1 48",
+				"8/8/5Bp1/3p4/p3k2P/7P/5K2/8 w - - 1 48",
+				"8/8/5Bp1/8/p2pk2P/7P/5K2/8 w - - 1 48",
+				"8/4B3/6p1/8/p2pk2P/7P/5K2/8 w - - 1 48",
+				"8/4B3/6p1/8/p2p3P/3k3P/5K2/8 w - - 1 48",
+				"8/8/6p1/2B5/p2p3P/3k3P/5K2/8 w - - 1 48",
+				"8/8/6p1/2B5/p1kp3P/7P/5K2/8 w - - 1 48",
+				"8/4B3/6p1/8/p1kp3P/7P/5K2/8 w - - 1 48",
+				"8/4B3/6p1/8/p2p3P/1k5P/5K2/8 w - - 1 48",
+			],
+			"bestMoves": [
+				"1"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "Meier's Spectacular Sacrifice",
+			"caption": "Many moves keep White's advantage here, and more than one increases the advantage. However, the move played in the game is by far the most spectacular. This move looks like an upgraded version of Marshall's legendary move for a few reasons. First, there are more pieces on the board, which makes the move even more difficult to find. Second, the forced checkmates require longer calculations.And lastly, Stockfish doesn't even suggest this move ",
+			"moves": [
+				"2rq2kb/pb1r3p/2n1R1pB/1pp2pN1/3p1Q2/P1PP2P1/1P3PBP/4R1K1 b - - 1 1",
+				"2rq2kb/pbQr3p/2n1R1pB/1pp2pN1/3p4/P1PP2P1/1P3PBP/4R1K1 b - - 1 1",
+				"2rq2kb/pbr4p/2n1R1pB/1pp2pN1/3p4/P1PP2P1/1P3PBP/4R1K1 b - - 1 1",
+				"2rqR1kb/pbr4p/2n3pB/1pp2pN1/3p4/P1PP2P1/1P3PBP/4R1K1 b - - 1 1",
+				"2r1q1kb/pbr4p/2n3pB/1pp2pN1/3p4/P1PP2P1/1P3PBP/4R1K1 b - - 1 1",
+				"2r1R1kb/pbr4p/2n3pB/1pp2pN1/3p4/P1PP2P1/1P3PBP/6K1 b - - 1 1",
+				"4r1kb/pbr4p/2n3pB/1pp2pN1/3p4/P1PP2P1/1P3PBP/6K1 b - - 1 1",
+				"4r1kb/pbr4p/2n3pB/1ppB1pN1/3p4/P1PP2P1/1P3P1P/6K1 b - - 1 1",
+                "6kb/pbr4p/2n1r1pB/1ppB1pN1/3p4/P1PP2P1/1P3P1P/6K1 b - - 1 1",
+                "6kb/pbr4p/2n1B1pB/1pp2pN1/3p4/P1PP2P1/1P3P1P/6K1 b - - 1 1",
+                "6kb/pb3r1p/2n1B1pB/1pp2pN1/3p4/P1PP2P1/1P3P1P/6K1 b - - 1 1",
+                "6kb/pb3B1p/2n3pB/1pp2pN1/3p4/P1PP2P1/1P3P1P/6K1 b - - 1 1"
+			],
+			"bestMoves": [
+				"1",
+                "3"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "Marshall's Legendary Move",
+			"caption": "Black is winning and has several moves that can maintain the advantage—but one move is outstanding in this position for Black. Qg3!! is one of those moves that gets burned into people's memories quickly. To put a queen on a square where it can be captured so many times and still win so emphatically is unforgettable.",
+			"moves": [
+				"5rk1/pp4pp/4p3/2R3Q1/3n4/2q4r/P1P2PPP/5RK1 b - - 1 23",
+				"5rk1/pp4pp/4p3/2R3Q1/3n4/6qr/P1P2PPP/5RK1 b - - 1 23",
+				"5rk1/pp4pp/4p3/2R3Q1/3n4/6Pr/P1P2PP1/5RK1 b - - 1 23",
+				"5rk1/pp4pp/4p3/2R3Q1/8/6Pr/P1P1nPP1/5RK1 b - - 1 23"
+			],
+			"bestMoves": [
+				"1"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "Vladimirov's Thunderbolt",
+			"caption": "Recapturing the queen seems more than logical and would be the likely move by more than 99.99999% of chess players. Stockfish gives 26.cxb3 as roughly equal, while 26.axb3 gives a nice advantage to White. However, Vladimirov had other plans, and he found the only move that wins on the spot.",
+			"moves": [
+                "r4k1r/1b2bPR1/p4n2/1q1p4/4P2P/1Q2B2B/PpP5/1K4R1 b - - 2 25"
+				"r4k1r/1b2bPR1/p4n2/3p4/4P2P/1q2B2B/PpP5/1K4R1 w - - 0 26",
+				"r4k1r/1b2bPR1/p4n1B/3p4/4P2P/1q5B/PpP5/1K4R1 w - - 0 26",
+				"r4k1r/1b2bPR1/p6B/3p4/4P1nP/1q5B/PpP5/1K4R1 w - - 0 26",
+				"r4k1r/1b2bP1R/p6B/3p4/4P1nP/1q5B/PpP5/1K4R1 w - - 0 26",
+				"r4k1r/1b2bP1R/p6n/3p4/4P2P/1q5B/PpP5/1K4R1 w - - 0 26",
+				"r4k1R/1b2bP2/p6n/3p4/4P2P/1q5B/PpP5/1K4R1 w - - 0 26",
+				"r6R/1b2bk2/p6n/3p4/4P2P/1q5B/PpP5/1K4R1 w - - 0 26",
+				"r7/1b2bk1R/p6n/3p4/4P2P/1q5B/PpP5/1K4R1 w - - 0 26",
+				"r3k3/1b2b2R/p6n/3p4/4P2P/1q5B/PpP5/1K4R1 w - - 0 26",
+				"r3k3/1b2b2R/p6n/3p4/4P2P/1P5B/1pP5/1K4R1 w - - 0 26",
+			],
+			"bestMoves": [
+				"2","4"
+			],
+			"flip": false,
+			"whiteToPlay": false
+		},
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "Geller's Rook And Pawn Endgame",
+			"caption": "Geller(Black) is up a pawn, but his rook is attacked. If he allows White to take the e5-pawn with check, then his extra pawn on a4 could fall.",
+			"moves": [
+				"8/7p/5kp1/4p3/p3rPRP/3K2P1/8/8 b - - 1 43",
+				"8/6kp/6p1/4p3/p3rPRP/3K2P1/8/8 b - - 1 43",
+				"8/6kp/6p1/4p2P/p3rPR1/3K2P1/8/8 b - - 1 43",
+				"8/6kp/6p1/4p2P/4rPR1/p2K2P1/8/8 b - - 1 43",
+				"8/6kp/6p1/4p2P/4KPR1/p5P1/8/8 b - - 1 43",
+				"8/6kp/6p1/4p2P/4KPR1/6P1/p7/8 b - - 1 43",
+				"8/6kp/6P1/4p3/4KPR1/6P1/p7/8 b - - 1 43",
+				"8/6k1/6p1/4p3/4KPR1/6P1/p7/8 b - - 1 43",
+				"8/6k1/6p1/4p1R1/4KP2/6P1/p7/8 b - - 1 43",
+				"8/6k1/6p1/4p1R1/4KP2/6P1/8/Q7 b - - 1 43",
+			],
+			"bestMoves": [
+				"1"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": " Bura's Desperado Sacrifice",
+			"caption": "Bura had the white pieces against Paric in their game played in Yugoslavia in 1982. Bura was down two pawns, and his queen and rook were both hanging. Trading queens with 1.Rxa1 Nxd4 looks unpleasant, but what else is there? ",
+			"moves": [
+				"r4rk1/pp2pp1p/3p2p1/6B1/3Q3P/1P6/1RPKnPP1/q6R w - - 0 1",
+				"r4rkQ/pp2pp1p/3p2p1/6B1/7P/1P6/1RPKnPP1/q6R w - - 0 1",
+				"r4r1k/pp2pp1p/3p2p1/6B1/7P/1P6/1RPKnPP1/q6R w - - 0 1",
+				"r4r1k/pp2pp1p/3p2p1/6B1/7P/1P6/1RPKnPP1/R7 w - - 0 1",
+				"r4r1k/pp2pp1p/3p2p1/6B1/3n3P/1P6/1RPK1PP1/R7 w - - 0 1",
+				"r4r1k/pp2Bp1p/3p2p1/8/3n3P/1P6/1RPK1PP1/R7 w - - 0 1",
+				"r3r2k/pp2Bp1p/3p2p1/8/3n3P/1P6/1RPK1PP1/R7 w - - 0 1",
+				"r3r2k/pp3p1p/3p1Bp1/8/3n3P/1P6/1RPK1PP1/R7 w - - 0 1",
+				"r3r1k1/pp3p1p/3p1Bp1/8/3n3P/1P6/1RPK1PP1/R7 w - - 0 1",
+				"r3r1k1/pp3p1p/3p2p1/8/3B3P/1P6/1RPK1PP1/R7 w - - 0 1",
+			],
+			"bestMoves": [
+				"1"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "An Amazing Bishop Endgame",
+			"caption": "At first glance, this looks like a boring and dead-equal bishop ending. It feels like Black can just move their e-pawn and forever control the queening square for White's h-pawn with their dark-squared bishop on d4. If you show this position to Stockfish, it initially agrees and shows an evaluation of all zeros (0.00). However, it is really White to move and win. The first move isn't terribly difficult to find, but it is the fourth move that blows my mind.",
+			"moves": [
+				"1B6/8/7P/4p3/3b3k/8/8/2K5 w - - 0 1",
+				"8/B7/7P/4p3/3b3k/8/8/2K5 w - - 0 1",
+				"8/B7/7P/4p3/7k/8/8/b1K5 w - - 0 1",
+				"8/B7/7P/4p3/7k/8/8/bK6 w - - 0 1",
+				"8/B7/7P/4p3/7k/2b5/8/1K6 w - - 0 1",
+				"8/B7/7P/4p3/7k/2b5/2K5/8 w - - 0 1",
+				"8/B7/7P/4p3/7k/8/2K5/b7 w - - 0 1",
+				"8/8/7P/4p3/3B3k/8/2K5/b7 w - - 0 1",
+				"8/8/7P/4p3/3b3k/8/2K5/8 w - - 0 1",
+				"8/8/7P/4p3/3b3k/3K4/8/8 w - - 0 1",
+				"8/8/7P/4p3/7k/3K4/8/b7 w - - 0 1",
+				"8/8/7P/4p3/4K2k/8/8/b7 w - - 0 1",
+			],
+			"bestMoves": [
+				"1"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		}
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "Edward Lasker's Stunning Queen Sacrifice For Mate",
+			"caption": "Lasker has a lead in development, his minor pieces dominate the center, and Black's kingside has been weakened. In this position, Lasker found a wonderful queen sacrifice that forces checkmate in seven moves.",
+			"moves": [
+				"rn3rk1/pbppq1pp/1p2pb2/4N2Q/3PN3/3B4/PPP2PPP/R3K2R w KQ - 6 11",
+				"rn3rk1/pbppq1pQ/1p2pb2/4N3/3PN3/3B4/PPP2PPP/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1pk/1p2pb2/4N3/3PN3/3B4/PPP2PPP/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1pk/1p2pN2/4N3/3P4/3B4/PPP2PPP/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN1k/4N3/3P4/3B4/PPP2PPP/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN1k/8/3P2N1/3B4/PPP2PPP/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/6k1/3P2N1/3B4/PPP2PPP/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/6k1/3P2NP/3B4/PPP2PP1/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/8/3P1kNP/3B4/PPP2PP1/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/8/3P1kNP/3B2P1/PPP2P2/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/8/3P2NP/3B1kP1/PPP2P2/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/8/3P2NP/5kP1/PPP1BP2/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/8/3P2NP/6P1/PPP1BPk1/R3K2R w KQ - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/8/3P2NP/6P1/PPP1BPkR/R3K3 w Q - 6 11",
+				"rn3r2/pbppq1p1/1p2pN2/8/3P2NP/6P1/PPP1BP1R/R3K1k1 w Q - 6 11"
+				"rn3r2/pbppq1p1/1p2pN2/8/3P2NP/6P1/PPPKBP1R/R5k1 w - - 6 11"
+			],
+			"bestMoves": [
+				"1"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+		{
+			"_id": {
+				"$oid": "626695779159216a6663c85b"
+			},
+			"heading": "Sanz' Shocking Endgame Sacrifice",
+			"caption": "In this position, Sanz (Black) uncorked an amazing rook sacrifice with 31...Rxb2!! It takes Stockfish extra time to realize that this amazing move is completely winning for Black—the passed pawns on the c-file cannot be stopped!",
+			"moves": [
+				"8/pR4pk/1b2p3/2p3p1/N1p5/7P/PP1r2P1/6K1 b - - 2 31",
+				"8/pR4pk/1b2p3/2p3p1/N1p5/7P/Pr4P1/6K1 b - - 2 31",
+				"8/pR4pk/1b2p3/2p3p1/2p5/7P/PN4P1/6K1 b - - 2 31",
+				"8/pR4pk/1b2p3/2p3p1/8/2p4P/PN4P1/6K1 b - - 2 31",
+				"8/p5pk/1R2p3/2p3p1/8/2p4P/PN4P1/6K1 b - - 2 31",
+				"8/p5pk/1R2p3/6p1/2p5/2p4P/PN4P1/6K1 b - - 2 31",
+				"8/p5pk/4p3/6p1/1Rp5/2p4P/PN4P1/6K1 b - - 2 31",
+				"8/6pk/4p3/p5p1/1Rp5/2p4P/PN4P1/6K1 b - - 2 31",
+				"8/6pk/4p3/p5p1/1RN5/2p4P/P5P1/6K1 b - - 2 31",
+				"8/6pk/4p3/p5p1/1RN5/7P/P1p3P1/6K1 b - - 2 31",
+			],
+			"bestMoves": [
+				"1"
+			],
+			"flip": false,
+			"whiteToPlay": true
+		},
+		
+		
+	]
+}

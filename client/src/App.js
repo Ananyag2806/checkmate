@@ -6,6 +6,7 @@ import LogoSmallScreen from './components/LogoSmallScreen';
 import Landing from './components/Landing';
 import Trending from './components/Trending';
 import Best from './components/Best';
+import Login from './components/Login';
 import AddYourOwn from './components/AddYourOwn';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -48,6 +49,7 @@ function App() {
 						<Route path='/' element={<Landing />} />
 						<Route exact path='/trending' element={<Trending />} />
 						<Route exact path='/best' element={<Best />} />
+						<Route exact path='/login' element={<Login />} />
 						<Route
 							exact
 							path='/addYourOwn'
