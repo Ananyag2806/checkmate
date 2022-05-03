@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 			background: '#ffffff',
 		},
 	},
+
 	main: {
 		display: 'flex',
 		width: '90%',
