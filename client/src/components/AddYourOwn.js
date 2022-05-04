@@ -2,7 +2,6 @@ import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { makeStyles } from '@mui/styles';
-import TextField from '@mui/material/TextField';
 import Divider from './DividerWithText';
 import Button from '@mui/material/Button';
 import Stepper from '@mui/material/Stepper';
@@ -11,6 +10,14 @@ import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import StepButton from '@mui/material/StepButton';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
 
 const useStyles = makeStyles({
 	root: {
@@ -86,6 +93,25 @@ const AddYourOwn = () => {
 		}
 	};
 
+	function createData(name, calories, fat, carbs, protein) {
+		return { name, calories, fat, carbs, protein };
+	}
+
+	const rows = [
+		createData('Frozen yoghurt', 159, 6.0),
+		createData('Ice cream sandwich', 237, 9.0),
+		createData('Eclair', 262, 16.0),
+		createData('Cupcake', 305, 3.7),
+		createData('Gingerbread', 356, 16.0),
+	];
+
+	// TextField
+	const [value, setValue] = React.useState('Controlled');
+
+	const handleChange = (event) => {
+		setValue(event.target.value);
+	};
+
 	return (
 		<div className={classes.root}>
 			<Chessboard
@@ -137,10 +163,58 @@ const AddYourOwn = () => {
 						</React.Fragment>
 					)}
 					{activeStep === 1 && (
-						<React.Fragment>22222222222222222233</React.Fragment>
+						<React.Fragment>
+							<TableContainer component={Paper}>
+								<Table
+									sx={{ minWidth: 650 }}
+									aria-label='simple table'>
+									<TableHead>
+										<TableRow>
+											<TableCell>Caption</TableCell>
+											<TableCell>White</TableCell>
+											<TableCell>Black</TableCell>
+										</TableRow>
+									</TableHead>
+									<TableBody>
+										{rows.map((row) => (
+											<TableRow
+												key={row.name}
+												sx={{
+													'&:last-child td, &:last-child th':
+														{ border: 0 },
+												}}>
+												<TableCell>
+													{row.name}
+												</TableCell>
+												<TableCell>
+													{row.calories}
+												</TableCell>
+												<TableCell>{row.fat}</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								</Table>
+							</TableContainer>
+							<Divider>or</Divider>
+							<Button variant='outlined'>
+								Add Positions on the Board
+							</Button>
+							<Divider>or</Divider>
+							<TextField
+								id='outlined-multiline-flexible'
+								label='Multiline'
+								multiline
+								maxRows={4}
+								value={value}
+								onChange={handleChange}
+							/>
+							<Button variant='outlined'>Load PGN</Button>
+						</React.Fragment>
 					)}
 					{activeStep === 2 && (
-						<React.Fragment>33333333333333333333</React.Fragment>
+						<React.Fragment>
+							<Button variant='outlined'>Preview</Button>
+						</React.Fragment>
 					)}
 					{activeStep === steps.length ? (
 						<React.Fragment></React.Fragment>
