@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRef, useState, useEffect } from 'react';
+import Chess from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 import { makeStyles } from '@mui/styles';
 import Divider from './DividerWithText';
@@ -7,9 +8,7 @@ import Button from '@mui/material/Button';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import StepButton from '@mui/material/StepButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -18,6 +17,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
+import InputBase from '@mui/material/InputBase';
 
 const useStyles = makeStyles({
 	root: {
@@ -38,6 +38,16 @@ const AddYourOwn = () => {
 	const classes = useStyles();
 	const chessboardRef = useRef();
 
+	const [game, setGame] = useState(new Chess());
+	const [startPos, setStartPos] = useState('');
+
+	const [moveFrom, setMoveFrom] = useState('');
+
+	const [rightClickedSquares, setRightClickedSquares] = useState({});
+	const [moveSquares, setMoveSquares] = useState({});
+	const [optionSquares, setOptionSquares] = useState({});
+
+	// Chess Board
 	const pieces = [
 		'wP',
 		'wN',
@@ -52,7 +62,6 @@ const AddYourOwn = () => {
 		'bQ',
 		'bK',
 	];
-
 	const customPieces = () => {
 		const returnPieces = {};
 		pieces.map((p) => {
@@ -69,6 +78,87 @@ const AddYourOwn = () => {
 		return returnPieces;
 	};
 
+	function safeGameMutate(modify) {
+		setGame((g) => {
+			const update = { ...g };
+			modify(update);
+			return update;
+		});
+	}
+
+	function getMoveOptions(square) {
+		const moves = game.moves({
+			square,
+			verbose: true,
+		});
+		if (moves.length === 0) {
+			return;
+		}
+
+		const newSquares = {};
+		moves.map((move) => {
+			newSquares[move.to] = {
+				background:
+					game.get(move.to) &&
+					game.get(move.to).color !== game.get(square).color
+						? 'radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)'
+						: 'radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)',
+				borderRadius: '50%',
+			};
+			return move;
+		});
+		newSquares[square] = {
+			background: 'rgba(255, 255, 0, 0.4)',
+		};
+		setOptionSquares(newSquares);
+	}
+
+	function onSquareClick(square) {
+		setRightClickedSquares({});
+
+		function resetFirstMove(square) {
+			setMoveFrom(square);
+			getMoveOptions(square);
+		}
+
+		// from square
+		if (!moveFrom) {
+			resetFirstMove(square);
+			return;
+		}
+
+		// attempt to make move
+		const gameCopy = { ...game };
+		const move = gameCopy.move({
+			from: moveFrom,
+			to: square,
+			promotion: 'q', // always promote to a queen for example simplicity
+		});
+		setGame(gameCopy);
+
+		// if invalid, setMoveFrom and getMoveOptions
+		if (move === null) {
+			resetFirstMove(square);
+			return;
+		}
+
+		setMoveFrom('');
+		setOptionSquares({});
+	}
+
+	function onSquareRightClick(square) {
+		const colour = 'rgba(0, 0, 255, 0.4)';
+		setRightClickedSquares({
+			...rightClickedSquares,
+			[square]:
+				rightClickedSquares[square] &&
+				rightClickedSquares[square].backgroundColor === colour
+					? undefined
+					: { backgroundColor: colour },
+		});
+	}
+
+	// Stepper
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
@@ -92,36 +182,34 @@ const AddYourOwn = () => {
 			return <div>Active step 3</div>;
 		}
 	};
-
-	function createData(name, calories, fat, carbs, protein) {
-		return { name, calories, fat, carbs, protein };
+	// Table
+	function createData(SrNo, White, Black, Caption) {
+		return { SrNo, White, Black, Caption };
 	}
 
 	const rows = [
-		createData('Frozen yoghurt', 159, 6.0),
-		createData('Ice cream sandwich', 237, 9.0),
-		createData('Eclair', 262, 16.0),
-		createData('Cupcake', 305, 3.7),
-		createData('Gingerbread', 356, 16.0),
+		createData(1, 159, 6.0, 'Frozen yoghurt'),
+		createData(2, 237, 9.0, 'Ice cream sandwich'),
+		createData(3, 262, 16.0, 'Eclair'),
+		createData(4, 305, 3.7, 'Eclair'),
+		createData(5, 356, 16.0, 'Eclair'),
 	];
 
-	// TextField
-	const [value, setValue] = React.useState('Controlled');
+	// TextField of table
+	// const [moves, setMoves] = useState([]);
+	// const [captions, setCaptions] = useState([]);
 
-	const handleChange = (event) => {
-		setValue(event.target.value);
-	};
+	game.validate_fen(startPos).valid && game.load(startPos);
 
 	return (
 		<div className={classes.root}>
 			<Chessboard
-				className={classes.board}
-				boardWidth={
-					window.screen.width < 600 ? 0.9 * window.screen.width : 560
-				}
-				arePiecesDraggable={true}
-				// position={'start'}
 				animationDuration={200}
+				arePiecesDraggable={true}
+				// boardWidth={boardWidth}
+				position={game.fen()}
+				onSquareClick={onSquareClick}
+				onSquareRightClick={onSquareRightClick}
 				customBoardStyle={{
 					borderRadius: '4px',
 					boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
@@ -130,6 +218,11 @@ const AddYourOwn = () => {
 				customDarkSquareStyle={{ backgroundColor: '#A1B57D' }}
 				customLightSquareStyle={{ backgroundColor: '#F7F7EE' }}
 				customPieces={customPieces()}
+				customSquareStyles={{
+					...moveSquares,
+					...optionSquares,
+					...rightClickedSquares,
+				}}
 				ref={chessboardRef}
 			/>
 			<div className={classes.half}>
@@ -155,7 +248,16 @@ const AddYourOwn = () => {
 								id='outlined-basic'
 								label='Outlined'
 								variant='outlined'
+								onChange={(e) => {
+									setStartPos(e.target.value);
+								}}
 							/>
+							{game.validate_fen(startPos).valid === false ? (
+								<p>{game.validate_fen(startPos).error}</p>
+							) : (
+								<p>FEN String Valid</p>
+							)}
+
 							<Divider>or</Divider>
 							<Button variant='outlined'>
 								Set Position on the Board
@@ -170,26 +272,55 @@ const AddYourOwn = () => {
 									aria-label='simple table'>
 									<TableHead>
 										<TableRow>
-											<TableCell>Caption</TableCell>
+											<TableCell>Sr. No.</TableCell>
 											<TableCell>White</TableCell>
 											<TableCell>Black</TableCell>
+											<TableCell>Caption</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
 										{rows.map((row) => (
 											<TableRow
-												key={row.name}
+												key={row.White}
 												sx={{
 													'&:last-child td, &:last-child th':
 														{ border: 0 },
 												}}>
 												<TableCell>
-													{row.name}
+													{row.White}
 												</TableCell>
 												<TableCell>
-													{row.calories}
+													<InputBase
+														sx={{ ml: 1, flex: 1 }}
+														placeholder='white'
+														inputProps={{
+															'aria-label':
+																'white',
+														}}
+													/>
 												</TableCell>
-												<TableCell>{row.fat}</TableCell>
+												<TableCell>
+													<InputBase
+														sx={{ ml: 1, flex: 1 }}
+														placeholder='Black'
+														inputProps={{
+															'aria-label':
+																'Black',
+														}}
+													/>
+												</TableCell>
+												<TableCell>
+													<InputBase
+														sx={{ ml: 1, flex: 1 }}
+														placeholder='Caption'
+														multiline
+														maxRows={4}
+														inputProps={{
+															'aria-label':
+																'Caption',
+														}}
+													/>
+												</TableCell>
 											</TableRow>
 										))}
 									</TableBody>
@@ -205,8 +336,6 @@ const AddYourOwn = () => {
 								label='Multiline'
 								multiline
 								maxRows={4}
-								value={value}
-								onChange={handleChange}
 							/>
 							<Button variant='outlined'>Load PGN</Button>
 						</React.Fragment>
@@ -244,16 +373,6 @@ const AddYourOwn = () => {
 						</React.Fragment>
 					)}
 				</Box>
-
-				{/* <div className={classes.half}>
-				<h3>Starting Position in FEN</h3>
-				<TextField
-					id='outlined-basic'
-					label='Outlined'
-					variant='outlined'
-				/>
-				<Divider>or</Divider>
-				<Button variant='outlined'>Set Position on the Board</Button> */}
 			</div>
 		</div>
 	);

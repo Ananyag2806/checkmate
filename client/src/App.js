@@ -9,6 +9,7 @@ import Best from './components/Best';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AddYourOwn from './components/AddYourOwn';
+import AddYourOwnTest from './components/AddYourOwnTest';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
