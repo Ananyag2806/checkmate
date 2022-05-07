@@ -18,6 +18,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
+import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles({
 	root: {
@@ -25,6 +28,25 @@ const useStyles = makeStyles({
 	},
 	half: {
 		display: 'block',
+	},
+	fenTf: {
+		margin: '10px',
+		width: '100%',
+	},
+	invalid: {
+		color: '#EB5353',
+		display: 'flex',
+		alignItems: 'center',
+		margin: '3px',
+	},
+	valid: {
+		color: 'green',
+		display: 'flex',
+		alignItems: 'center',
+		margin: '3px',
+	},
+	setPosBtn: {
+		color: 'green',
 	},
 });
 
@@ -40,6 +62,7 @@ const AddYourOwn = () => {
 
 	const [game, setGame] = useState(new Chess());
 	const [startPos, setStartPos] = useState('');
+	const [pgn, setPgn] = useState('');
 
 	const [moveFrom, setMoveFrom] = useState('');
 
@@ -129,6 +152,7 @@ const AddYourOwn = () => {
 
 		// attempt to make move
 		const gameCopy = { ...game };
+		console.log(gameCopy);
 		const move = gameCopy.move({
 			from: moveFrom,
 			to: square,
@@ -157,7 +181,8 @@ const AddYourOwn = () => {
 					: { backgroundColor: colour },
 		});
 	}
-
+	pgn !== '' && console.log(game.load_pgn(pgn));
+	console.log(game.history());
 	// Stepper
 	const [activeStep, setActiveStep] = React.useState(0);
 
@@ -199,13 +224,13 @@ const AddYourOwn = () => {
 	// const [moves, setMoves] = useState([]);
 	// const [captions, setCaptions] = useState([]);
 
-	game.validate_fen(startPos).valid && game.load(startPos);
+	// game.validate_fen(startPos).valid && game.load(startPos);
 
 	return (
 		<div className={classes.root}>
 			<Chessboard
 				animationDuration={200}
-				arePiecesDraggable={true}
+				arePiecesDraggable={false}
 				// boardWidth={boardWidth}
 				position={game.fen()}
 				onSquareClick={onSquareClick}
@@ -243,23 +268,48 @@ const AddYourOwn = () => {
 					</Stepper>
 					{activeStep === 0 && (
 						<React.Fragment>
-							<h3>Starting Position in FEN</h3>
+							<Typography variant='h6' gutterBottom>
+								Starting Position in FEN
+							</Typography>
 							<TextField
 								id='outlined-basic'
-								label='Outlined'
+								label='Enter FEN String'
 								variant='outlined'
+								className={classes.fenTf}
 								onChange={(e) => {
 									setStartPos(e.target.value);
 								}}
 							/>
 							{game.validate_fen(startPos).valid === false ? (
-								<p>{game.validate_fen(startPos).error}</p>
+								<Typography
+									className={classes.invalid}
+									variant='subtitle2'
+									style={{ marginTop: '5px' }}
+									gutterBottom>
+									<ReportGmailerrorredOutlinedIcon />
+									{game.validate_fen(startPos).error}
+								</Typography>
 							) : (
-								<p>FEN String Valid</p>
+								<p className={classes.validString}>
+									<Typography
+										className={classes.valid}
+										style={{ marginTop: '5px' }}
+										variant='subtitle2'
+										gutterBottom>
+										<CheckCircleOutlineOutlinedIcon />
+										FEN String Valid
+									</Typography>
+								</p>
 							)}
 
 							<Divider>or</Divider>
-							<Button variant='outlined'>
+							<Button
+								variant='outlined'
+								className={classes.setPosBtn}
+								style={{
+									color: 'green',
+									border: '1px solid green',
+								}}>
 								Set Position on the Board
 							</Button>
 						</React.Fragment>
@@ -333,8 +383,11 @@ const AddYourOwn = () => {
 							<Divider>or</Divider>
 							<TextField
 								id='outlined-multiline-flexible'
-								label='Multiline'
+								label='PGN'
 								multiline
+								onChange={(e) => {
+									setPgn(e.target.value);
+								}}
 								maxRows={4}
 							/>
 							<Button variant='outlined'>Load PGN</Button>
