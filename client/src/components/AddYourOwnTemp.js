@@ -89,7 +89,7 @@ const AddYourOwnTemp = () => {
 	const [game, setGame] = useState(new Chess());
 	const [pgn, setPgn] = useState('');
 	const movesPgn = [];
-	const movesFen = [];
+	const [movesFen, setMovesFen] = useState([]);
 	// console.log(posts);
 	// console.log(posts[curPost]);
 	// console.log(flip);
@@ -99,17 +99,21 @@ const AddYourOwnTemp = () => {
 	// console.log(game.history());
 	// console.log(pgn);
 
-	useEffect(() => {
-		const hist = game.history();
-		hist.map((item) => {
-			game.move(item);
-			movesFen.push(game.fen());
-		});
-		console.log(movesFen);
-	}, [pgn]);
+	// useEffect(() => {
+	// 	setMovesFen((oldArray) => [...oldArray, game.fen()]);
+
+	// 	console.log(movesPgn);
+	// 	console.log(movesFen);
+	// }, [pgn]);
+
+	setMovesFen((oldArray) => [...oldArray, game.fen()]);
+	// console.log(movesPgn);
+	console.log(movesFen);
+	console.log(game.fen());
 
 	const nextMove = (curMove) => {
 		curMove + 1 < movesFen.length && setCurMove(curMove + 1);
+		//                      2 - 0, 1
 		console.log(curMove);
 	};
 	const prevMove = (curMove) => {
@@ -172,10 +176,8 @@ const AddYourOwnTemp = () => {
 		}
 	};
 
-	activeStep === 1 &&
-		movesFen.length > 0 &&
-		setCurMove(0) &&
-		game.load(movesFen[curMove]);
+	console.log(activeStep);
+	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
 
 	return (
 		<div className={classes.root}>
@@ -236,6 +238,9 @@ const AddYourOwnTemp = () => {
 							minRows={8}
 							maxRows={15}
 						/>
+						<Button variant='outlined' onClick={done}>
+							Done
+						</Button>
 					</React.Fragment>
 				)}
 				{activeStep === 1 && (
