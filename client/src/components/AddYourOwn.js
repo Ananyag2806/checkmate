@@ -48,12 +48,15 @@ const useStyles = makeStyles({
 	setPosBtn: {
 		color: 'green',
 	},
+	pgnBox: {
+		width: '100%',
+	},
 });
 
 const steps = [
-	'Set up the starting Position',
-	'Add moves and stuff',
-	'Post :)',
+	// 'Set up the starting Position',
+	'Copy PGN',
+	'Review and Post :)',
 ];
 
 const AddYourOwn = () => {
@@ -61,7 +64,7 @@ const AddYourOwn = () => {
 	const chessboardRef = useRef();
 
 	const [game, setGame] = useState(new Chess());
-	const [startPos, setStartPos] = useState('');
+	const [startPos, setStartPos] = useState(''); //to set the starting pos with FEN
 	const [pgn, setPgn] = useState('');
 
 	const [moveFrom, setMoveFrom] = useState('');
@@ -266,7 +269,7 @@ const AddYourOwn = () => {
 							);
 						})}
 					</Stepper>
-					{activeStep === 0 && (
+					{/* {activeStep === 0 && (
 						<React.Fragment>
 							<Typography variant='h6' gutterBottom>
 								Starting Position in FEN
@@ -313,10 +316,10 @@ const AddYourOwn = () => {
 								Set Position on the Board
 							</Button>
 						</React.Fragment>
-					)}
-					{activeStep === 1 && (
+					)} */}
+					{activeStep === 0 && (
 						<React.Fragment>
-							<TableContainer component={Paper}>
+							{/* <TableContainer component={Paper}>
 								<Table
 									sx={{ minWidth: 650 }}
 									aria-label='simple table'>
@@ -380,20 +383,23 @@ const AddYourOwn = () => {
 							<Button variant='outlined'>
 								Add Positions on the Board
 							</Button>
-							<Divider>or</Divider>
+
+                            */}
+
 							<TextField
 								id='outlined-multiline-flexible'
 								label='PGN'
 								multiline
+								className={classes.pgnBox}
 								onChange={(e) => {
 									setPgn(e.target.value);
 								}}
-								maxRows={4}
+								minRows={8}
+								maxRows={15}
 							/>
-							<Button variant='outlined'>Load PGN</Button>
 						</React.Fragment>
 					)}
-					{activeStep === 2 && (
+					{activeStep === 1 && (
 						<React.Fragment>
 							<Button variant='outlined'>Preview</Button>
 						</React.Fragment>
