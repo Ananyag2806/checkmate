@@ -86,26 +86,9 @@ const AddYourOwnTemp = () => {
 	const [game, setGame] = useState(new Chess()); //this game is visible on the screen
 	const [game2, setGame2] = useState(new Chess()); //this game is not visible and is here for adding moves in array
 	const [pgn, setPgn] = useState('');
+	const [startFen, setStartFen] = useState('');
 	const movesPgn = [];
 	const [movesFen, setMovesFen] = useState([]);
-	// console.log(posts);
-	// console.log(posts[curPost]);
-	// console.log(flip);
-	// console.log(curPostRef);
-
-	// console.log(game.load_pgn(pgn));
-	game.load_pgn(pgn);
-	// console.log(game.history());
-	// console.log(pgn);
-
-	// useEffect(() => {
-	// 	setMovesFen([...movesFen, game.fen()]);
-	// }, [pgn]);
-
-	console.log(movesFen);
-	// console.log(movesPgn);
-	// console.log(movesFen);
-	// console.log(game.fen());
 
 	const nextMove = (curMove) => {
 		curMove + 1 < movesFen.length && setCurMove(curMove + 1);
@@ -118,16 +101,27 @@ const AddYourOwnTemp = () => {
 	};
 
 	const done = () => {
+		if (movesFen.length === 0) {
+			const end = pgn.indexOf('"', 18);
+			const start = 18;
+			const fen = pgn.substring(start, end);
+			console.log(fen);
+			setMovesFen([fen]);
+			game2.load(fen);
+		}
 		const hist = game.history();
+		console.log(hist);
+		console.log(startFen);
 		hist.map((item) => {
 			console.log(game2.move(item));
-			const fen = game2.fen();
+			const fen = game2.fen(); // dont be smart and put game2.fen directly in next line. doesnt work
 
 			setMovesFen((oldArray) => [...oldArray, fen]);
 			console.log(fen);
 			console.log(item);
 		});
 	};
+	console.log(movesFen);
 	const pieces = [
 		'wP',
 		'wN',
@@ -184,7 +178,7 @@ const AddYourOwnTemp = () => {
 		}
 	};
 
-	console.log(activeStep);
+	game.load_pgn(pgn);
 	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
 
 	return (
@@ -243,6 +237,9 @@ const AddYourOwnTemp = () => {
 							onChange={(e) => {
 								setPgn(e.target.value);
 							}}
+							defaultValue={
+								'[SetUp "1"]\n[FEN "<Enter Your Starting FEN String Here>"]'
+							}
 							minRows={8}
 							maxRows={15}
 						/>
