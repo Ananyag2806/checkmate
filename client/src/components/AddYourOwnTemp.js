@@ -80,13 +80,11 @@ const steps = [
 const AddYourOwnTemp = () => {
 	const classes = useStyles();
 
-	const [posts, setPosts] = useState([]);
-	const [curPost, setCurPost] = useState(0);
-	const [curPostRef, setCurPostRef] = useState({});
 	const [curMove, setCurMove] = useState(0);
 	const [flip, setFlip] = useState(false);
 	const chessboardRef = useRef();
 	const [game, setGame] = useState(new Chess());
+	const [game2, setGame2] = useState(new Chess());
 	const [pgn, setPgn] = useState('');
 	const movesPgn = [];
 	const [movesFen, setMovesFen] = useState([]);
@@ -95,21 +93,19 @@ const AddYourOwnTemp = () => {
 	// console.log(flip);
 	// console.log(curPostRef);
 
-	console.log(game.load_pgn(pgn));
+	// console.log(game.load_pgn(pgn));
+	game.load_pgn(pgn);
 	// console.log(game.history());
 	// console.log(pgn);
 
 	// useEffect(() => {
-	// 	setMovesFen((oldArray) => [...oldArray, game.fen()]);
-
-	// 	console.log(movesPgn);
-	// 	console.log(movesFen);
+	// 	setMovesFen([...movesFen, game.fen()]);
 	// }, [pgn]);
 
-	setMovesFen((oldArray) => [...oldArray, game.fen()]);
-	// console.log(movesPgn);
 	console.log(movesFen);
-	console.log(game.fen());
+	// console.log(movesPgn);
+	// console.log(movesFen);
+	// console.log(game.fen());
 
 	const nextMove = (curMove) => {
 		curMove + 1 < movesFen.length && setCurMove(curMove + 1);
@@ -119,6 +115,16 @@ const AddYourOwnTemp = () => {
 	const prevMove = (curMove) => {
 		curMove - 1 >= 0 && setCurMove(curMove - 1);
 		console.log(curMove);
+	};
+
+	const done = () => {
+		const hist = game.history();
+		hist.map((item) => {
+			console.log(game2.move(item));
+			console.log(game2.fen());
+			setMovesFen((oldArray) => [...oldArray, game2.fen()]);
+			console.log(item);
+		});
 	};
 	const pieces = [
 		'wP',
