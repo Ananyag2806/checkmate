@@ -83,8 +83,8 @@ const AddYourOwnTemp = () => {
 	const [curMove, setCurMove] = useState(0);
 	const [flip, setFlip] = useState(false);
 	const chessboardRef = useRef();
-	const [game, setGame] = useState(new Chess());
-	const [game2, setGame2] = useState(new Chess());
+	const [game, setGame] = useState(new Chess()); //this game is visible on the screen
+	const [game2, setGame2] = useState(new Chess()); //this game is not visible and is here for adding moves in array
 	const [pgn, setPgn] = useState('');
 	const movesPgn = [];
 	const [movesFen, setMovesFen] = useState([]);
@@ -121,8 +121,10 @@ const AddYourOwnTemp = () => {
 		const hist = game.history();
 		hist.map((item) => {
 			console.log(game2.move(item));
-			console.log(game2.fen());
-			setMovesFen((oldArray) => [...oldArray, game2.fen()]);
+			const fen = game2.fen();
+
+			setMovesFen((oldArray) => [...oldArray, fen]);
+			console.log(fen);
 			console.log(item);
 		});
 	};
