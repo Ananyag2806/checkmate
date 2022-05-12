@@ -19,6 +19,9 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import Typography from '@mui/material/Typography';
 
 import bB from './media/bB.png';
 // import bK from './media/bK.png';
@@ -50,6 +53,9 @@ const useStyles = makeStyles({
 		// justifyContent: 'center',
 		marginTop: '40px',
 	},
+	half: {
+		display: 'grid',
+	},
 	button: {
 		margin: '100px',
 		color: 'black',
@@ -66,8 +72,26 @@ const useStyles = makeStyles({
 		margin: '15px',
 		color: '#003F5C',
 	},
-	pgnBox: {
+	// pgnBox: {
+	// 	width: '100%',
+	// 	fontFamily: 'monospace',
+	// 	fontSize: '20px',
+	// },
+	fenTf: {
+		margin: '10px',
 		width: '100%',
+	},
+	invalid: {
+		color: '#EB5353',
+		display: 'flex',
+		alignItems: 'center',
+		margin: '3px',
+	},
+	valid: {
+		color: 'green',
+		display: 'flex',
+		alignItems: 'center',
+		margin: '3px',
 	},
 });
 
@@ -86,18 +110,15 @@ const AddYourOwnTemp = () => {
 	const [game, setGame] = useState(new Chess()); //this game is visible on the screen
 	const [game2, setGame2] = useState(new Chess()); //this game is not visible and is here for adding moves in array
 	const [pgn, setPgn] = useState('');
+	const [pgnValid, setPgnValid] = useState(false);
 	const [startFen, setStartFen] = useState('');
-	const movesPgn = [];
 	const [movesFen, setMovesFen] = useState([]);
 
 	const nextMove = (curMove) => {
 		curMove + 1 < movesFen.length && setCurMove(curMove + 1);
-		//                      2 - 0, 1
-		console.log(curMove);
 	};
 	const prevMove = (curMove) => {
 		curMove - 1 >= 0 && setCurMove(curMove - 1);
-		console.log(curMove);
 	};
 
 	const done = () => {
@@ -105,23 +126,20 @@ const AddYourOwnTemp = () => {
 			const end = pgn.indexOf('"', 18);
 			const start = 18;
 			const fen = pgn.substring(start, end);
-			console.log(fen);
+			setStartFen(fen);
 			setMovesFen([fen]);
 			game2.load(fen);
 		}
 		const hist = game.history();
-		console.log(hist);
-		console.log(startFen);
 		hist.map((item) => {
 			console.log(game2.move(item));
 			const fen = game2.fen(); // dont be smart and put game2.fen directly in next line. doesnt work
 
 			setMovesFen((oldArray) => [...oldArray, fen]);
-			console.log(fen);
-			console.log(item);
 		});
 	};
-	console.log(movesFen);
+
+	// console.log(movesFen);
 	const pieces = [
 		'wP',
 		'wN',
@@ -164,55 +182,42 @@ const AddYourOwnTemp = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
-	const handleReset = () => {
-		setActiveStep(0);
-	};
-
-	const displayActiveStep = () => {
-		if (activeStep === 0) {
-			return <div>Active step 1</div>;
-		} else if (activeStep === 1) {
-			return <div>Active step 2</div>;
-		} else {
-			return <div>Active step 3</div>;
-		}
-	};
-
 	game.load_pgn(pgn);
 	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
 
 	return (
 		<div className={classes.root}>
-			<Chessboard
-				boardWidth={
-					// window.screen.width < 600 ? 0.9 * window.screen.width : 560
-					450
-				}
-				arePiecesDraggable={false}
-				animationDuration={200}
-				position={game.fen()}
-				customBoardStyle={{
-					borderRadius: '4px',
-					boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
-				}}
-				// boardOrientation={posts[curPost].flip ? 'black' : 'white'}
-				customDarkSquareStyle={{ backgroundColor: '#A1B57D' }}
-				customLightSquareStyle={{ backgroundColor: '#F7F7EE' }}
-				customPieces={customPieces()}
-				ref={chessboardRef}
-			/>
-			<div style={{ display: 'flex', justifyContent: 'center' }}>
-				<IconButton onClick={() => prevMove(curMove)}>
-					<ArrowBackIosNewIcon className={classes.arrow} />
-				</IconButton>
-				<IconButton onClick={() => setCurMove(0)}>
-					<ReplayRoundedIcon className={classes.reset} />
-				</IconButton>
-				<IconButton onClick={() => nextMove(curMove)}>
-					<ArrowForwardIosIcon className={classes.arrow} />
-				</IconButton>
+			<div className={classes.half}>
+				<Chessboard
+					boardWidth={
+						// window.screen.width < 600 ? 0.9 * window.screen.width : 560
+						450
+					}
+					arePiecesDraggable={false}
+					animationDuration={200}
+					position={game.fen()}
+					customBoardStyle={{
+						borderRadius: '4px',
+						boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
+					}}
+					// boardOrientation={posts[curPost].flip ? 'black' : 'white'}
+					customDarkSquareStyle={{ backgroundColor: '#A1B57D' }}
+					customLightSquareStyle={{ backgroundColor: '#F7F7EE' }}
+					customPieces={customPieces()}
+					ref={chessboardRef}
+				/>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<IconButton onClick={() => prevMove(curMove)}>
+						<ArrowBackIosNewIcon className={classes.arrow} />
+					</IconButton>
+					<IconButton onClick={() => setCurMove(0)}>
+						<ReplayRoundedIcon className={classes.reset} />
+					</IconButton>
+					<IconButton onClick={() => nextMove(curMove)}>
+						<ArrowForwardIosIcon className={classes.arrow} />
+					</IconButton>
+				</div>
 			</div>
-
 			<Box sx={{ width: '100%' }}>
 				<Stepper activeStep={activeStep}>
 					{steps.map((label, index) => {
@@ -230,21 +235,50 @@ const AddYourOwnTemp = () => {
 				{activeStep === 0 && (
 					<React.Fragment>
 						<TextField
+							inputProps={{
+								style: {
+									fontSize: '15px',
+									fontFamily: 'monospace',
+								},
+							}}
 							id='outlined-multiline-flexible'
 							label='PGN'
 							multiline
-							className={classes.pgnBox}
+							fullWidth={true}
 							onChange={(e) => {
 								setPgn(e.target.value);
 							}}
 							defaultValue={
-								'[SetUp "1"]\n[FEN "<Enter Your Starting FEN String Here>"]'
+								'[SetUp "1"]\n[FEN "<Enter Your Starting FEN String Here>"]\n\n'
 							}
 							minRows={8}
 							maxRows={15}
 						/>
+
+						{game.validate_fen(startFen).valid === false ? (
+							<Typography
+								className={classes.invalid}
+								variant='subtitle2'
+								style={{ marginTop: '5px' }}
+								gutterBottom>
+								<ReportGmailerrorredOutlinedIcon />
+								{game.validate_fen(startFen).error}
+							</Typography>
+						) : (
+							<p className={classes.validString}>
+								<Typography
+									className={classes.valid}
+									style={{ marginTop: '5px' }}
+									variant='subtitle2'
+									gutterBottom>
+									<CheckCircleOutlineOutlinedIcon />
+									FEN String Valid
+								</Typography>
+							</p>
+						)}
+
 						<Button variant='outlined' onClick={done}>
-							Done
+							Validate
 						</Button>
 					</React.Fragment>
 				)}
