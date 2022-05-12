@@ -55,6 +55,7 @@ const useStyles = makeStyles({
 	},
 	half: {
 		display: 'grid',
+		margin: '20px',
 	},
 	button: {
 		margin: '100px',
@@ -77,9 +78,8 @@ const useStyles = makeStyles({
 	// 	fontFamily: 'monospace',
 	// 	fontSize: '20px',
 	// },
-	fenTf: {
-		margin: '10px',
-		width: '100%',
+	stepper: {
+		marginBottom: '20px',
 	},
 	invalid: {
 		color: '#EB5353',
@@ -111,6 +111,7 @@ const AddYourOwnTemp = () => {
 	const [game2, setGame2] = useState(new Chess()); //this game is not visible and is here for adding moves in array
 	const [pgn, setPgn] = useState('');
 	const [pgnValid, setPgnValid] = useState(false);
+	const [comments, setComments] = useState([]);
 	const [startFen, setStartFen] = useState('');
 	const [movesFen, setMovesFen] = useState([]);
 
@@ -129,6 +130,7 @@ const AddYourOwnTemp = () => {
 			setStartFen(fen);
 			setMovesFen([fen]);
 			game2.load(fen);
+			setComments(game.delete_comments());
 		}
 		const hist = game.history();
 		hist.map((item) => {
@@ -138,8 +140,8 @@ const AddYourOwnTemp = () => {
 			setMovesFen((oldArray) => [...oldArray, fen]);
 		});
 	};
-
-	// console.log(movesFen);
+	console.log(game.get_comments());
+	console.log(pgn);
 	const pieces = [
 		'wP',
 		'wN',
@@ -206,20 +208,22 @@ const AddYourOwnTemp = () => {
 					customPieces={customPieces()}
 					ref={chessboardRef}
 				/>
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<IconButton onClick={() => prevMove(curMove)}>
-						<ArrowBackIosNewIcon className={classes.arrow} />
-					</IconButton>
-					<IconButton onClick={() => setCurMove(0)}>
-						<ReplayRoundedIcon className={classes.reset} />
-					</IconButton>
-					<IconButton onClick={() => nextMove(curMove)}>
-						<ArrowForwardIosIcon className={classes.arrow} />
-					</IconButton>
-				</div>
+				{activeStep === 1 && (
+					<div style={{ display: 'flex', justifyContent: 'center' }}>
+						<IconButton onClick={() => prevMove(curMove)}>
+							<ArrowBackIosNewIcon className={classes.arrow} />
+						</IconButton>
+						<IconButton onClick={() => setCurMove(0)}>
+							<ReplayRoundedIcon className={classes.reset} />
+						</IconButton>
+						<IconButton onClick={() => nextMove(curMove)}>
+							<ArrowForwardIosIcon className={classes.arrow} />
+						</IconButton>
+					</div>
+				)}
 			</div>
 			<Box sx={{ width: '100%' }}>
-				<Stepper activeStep={activeStep}>
+				<Stepper activeStep={activeStep} className={classes.stepper}>
 					{steps.map((label, index) => {
 						const stepProps = {};
 						const labelProps = {};
@@ -284,7 +288,7 @@ const AddYourOwnTemp = () => {
 				)}
 				{activeStep === 1 && (
 					<React.Fragment>
-						<Button variant='outlined'>Preview</Button>
+						<Typography variant='h5'> Preview</Typography>
 					</React.Fragment>
 				)}
 				{activeStep === steps.length ? (
