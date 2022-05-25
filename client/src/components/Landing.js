@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles((theme) => ({
 	heading: {
@@ -91,6 +92,12 @@ const useStyles = makeStyles((theme) => ({
 		color: '#696969',
 		textAlign: 'center',
 	},
+	footer: {
+		textAlign: 'center',
+		padding: '10px',
+		// background: 'black',
+		// color: 'white',
+	},
 }));
 
 function Landing() {
@@ -161,6 +168,14 @@ function Landing() {
 						</p>
 					</Grid>
 				</Grid>
+			</div>
+			<div className={classes.footer}>
+				<Typography variant='body1'>
+					Made with ⚛ by{' '}
+					<a href='https://ananyag2806.github.io/portfolio/'>
+						Ananya Gupta
+					</a>
+				</Typography>
 			</div>
 		</div>
 	);

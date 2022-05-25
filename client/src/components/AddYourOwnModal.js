@@ -46,14 +46,6 @@ const override = css`
 	transform: translate(-50%, -50%);
 `;
 
-// To Do
-// 1. Retrieve comments
-// 2. Display comments in the next page
-// 3. Come up with instructions
-// 4. Backend
-// 5. Login and signup page
-// 6. Login with google
-
 const useStyles = makeStyles({
 	root: {
 		// textAlign: 'center',
@@ -117,10 +109,8 @@ const AddYourOwnTemp = () => {
 	const chessboardRef = useRef();
 	const [game, setGame] = useState(new Chess()); //this game is visible on the screen
 	const [game2, setGame2] = useState(new Chess()); //this game is not visible and is here for adding moves in array
-	const [pgn, setPgn] = useState(
-		'[SetUp "1"]\n[FEN "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"]\n\n'
-	);
-	const [pgnValid, setPgnValid] = useState(true);
+	const [pgn, setPgn] = useState('');
+	const [pgnValid, setPgnValid] = useState(false);
 	const [comments, setComments] = useState([]);
 	const [startFen, setStartFen] = useState('');
 	const [movesFen, setMovesFen] = useState([]);
@@ -133,32 +123,26 @@ const AddYourOwnTemp = () => {
 	};
 
 	const done = () => {
-		setPgn(game.pgn());
-		game2.load(startFen); //load fen into game2
-		setMovesFen([startFen]); //set it as the first move in the moves array
+		setMovesFen([startFen]);
 		const hist = game.history();
 		hist.map((item) => {
-			// console.log(game2.move(item));
-			if (console.log(game2.move(item)) === null) {
-				setPgnValid(false);
-				console.log('pgn incorrect');
-			}
+			console.log(game2.move(item));
 			const fen = game2.fen(); // dont be smart and put game2.fen directly in next line. doesnt work
+
 			setMovesFen((oldArray) => [...oldArray, fen]);
 		});
 	};
 
 	const reset = () => {
-		setPgn(
-			'[SetUp "1"]\n[FEN "<Enter Your Starting FEN String Here>"]\n\n'
+		setPgn('');
+		setStartFen(
+			'rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2'
 		);
-		setStartFen('');
 		setMovesFen([]);
 		game.reset();
 		game2.reset();
 	};
 
-	console.log('PGN' + pgn);
 	const pieces = [
 		'wP',
 		'wN',
@@ -201,10 +185,6 @@ const AddYourOwnTemp = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
-	// console.log(game.move('e5'));
-	// if (game.move('e5') === null) {
-	// 	console.log('works for just null');
-	// }
 	game.load_pgn(pgn);
 	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
 
@@ -266,27 +246,15 @@ const AddYourOwnTemp = () => {
 									fontFamily: 'monospace',
 								},
 							}}
-							id='pgnTxtBox'
-							label='PGN'
-							multiline
+							label='FEN String'
 							fullWidth={true}
 							onChange={(e) => {
-								const end = e.target.value.indexOf('"', 18);
-								const start = 18;
-								const fen = e.target.value.substring(
-									start,
-									end
-								); //extract fen
-								setStartFen(fen); //set it as startFen to validate
-								console.log('extracted FEN\n' + fen);
-								setPgn(e.target.value); //set it as pgn for game 1
-								console.log('current fen ' + game.fen());
+								setStartFen(e.target.value);
+								game.load(e.target.value);
+								game2.load(e.target.value);
 							}}
-							value={pgn}
-							minRows={8}
-							maxRows={15}
 						/>
-
+						{console.log(pgn)}
 						{game.validate_fen(startFen).valid === false ? (
 							<Typography
 								className={classes.invalid}
@@ -308,6 +276,24 @@ const AddYourOwnTemp = () => {
 								</Typography>
 							</p>
 						)}
+						<TextField
+							inputProps={{
+								style: {
+									fontSize: '15px',
+									fontFamily: 'monospace',
+								},
+							}}
+							id='pgnTxtBox'
+							label='PGN'
+							multiline
+							fullWidth={true}
+							onChange={(e) => {
+								setPgn(e.target.value);
+							}}
+							// value={pgn}
+							minRows={8}
+							maxRows={15}
+						/>
 
 						<Button variant='outlined' onClick={done}>
 							Validate
