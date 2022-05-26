@@ -137,6 +137,8 @@ const AddYourOwnTemp = () => {
 		game2.load(startFen); //load fen into game2
 		setMovesFen([startFen]); //set it as the first move in the moves array
 		const hist = game.history();
+		const comms = game.delete_comments();
+		setComments(comms);
 		hist.map((item) => {
 			// console.log(game2.move(item));
 			if (console.log(game2.move(item)) === null) {
@@ -146,19 +148,21 @@ const AddYourOwnTemp = () => {
 			const fen = game2.fen(); // dont be smart and put game2.fen directly in next line. doesnt work
 			setMovesFen((oldArray) => [...oldArray, fen]);
 		});
+		console.log(game2.pgn());
 	};
 
 	const reset = () => {
 		setPgn(
 			'[SetUp "1"]\n[FEN "<Enter Your Starting FEN String Here>"]\n\n'
 		);
+		setComments([]);
 		setStartFen('');
 		setMovesFen([]);
 		game.reset();
 		game2.reset();
 	};
 
-	console.log('PGN' + pgn);
+	// console.log('PGN' + pgn);
 	const pieces = [
 		'wP',
 		'wN',
@@ -207,6 +211,7 @@ const AddYourOwnTemp = () => {
 	// }
 	game.load_pgn(pgn);
 	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
+	console.log(comments);
 
 	return (
 		<div className={classes.root}>
@@ -320,6 +325,9 @@ const AddYourOwnTemp = () => {
 				{activeStep === 1 && (
 					<React.Fragment>
 						<Typography variant='h5'> Preview</Typography>
+						{/* {comments[0].comment} */}
+						{movesFen[curMove] === comments[0].fen &&
+							comments[0].comment}
 					</React.Fragment>
 				)}
 				{activeStep === steps.length ? (
