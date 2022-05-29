@@ -209,7 +209,8 @@ const AddYourOwnTemp = () => {
 	// if (game.move('e5') === null) {
 	// 	console.log('works for just null');
 	// }
-	game.load_pgn(pgn);
+
+	game.load_pgn(pgn) === false && console.log('pgn invalid');
 	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
 	console.log(comments);
 
@@ -276,16 +277,19 @@ const AddYourOwnTemp = () => {
 							multiline
 							fullWidth={true}
 							onChange={(e) => {
-								const end = e.target.value.indexOf('"', 18);
+								const p = e.target.value;
+								const end = p.indexOf('"', 18);
 								const start = 18;
-								const fen = e.target.value.substring(
-									start,
-									end
-								); //extract fen
-								setStartFen(fen); //set it as startFen to validate
-								console.log('extracted FEN\n' + fen);
-								setPgn(e.target.value); //set it as pgn for game 1
-								console.log('current fen ' + game.fen());
+								const fen = p.substring(start, end); //extract fen
+
+								setStartFen(fen);
+								//set it as startFen to validate
+								// console.log('extracted FEN\n' + fen);
+
+								setPgn(p);
+								//set it as pgn for game 1
+
+								// console.log('current fen ' + game.fen());
 							}}
 							value={pgn}
 							minRows={8}
@@ -313,7 +317,6 @@ const AddYourOwnTemp = () => {
 								</Typography>
 							</p>
 						)}
-
 						<Button variant='outlined' onClick={done}>
 							Validate
 						</Button>
