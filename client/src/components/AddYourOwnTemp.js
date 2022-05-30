@@ -122,8 +122,29 @@ const AddYourOwnTemp = () => {
 	);
 	const [pgnValid, setPgnValid] = useState(true);
 	const [comments, setComments] = useState([]);
+	const [comArray, setComArray] = useState([]);
 	const [startFen, setStartFen] = useState('');
 	const [movesFen, setMovesFen] = useState([]);
+
+	useEffect(() => {
+		// make a new array that stores comments in an organised fashion
+		console.log('in useEffect');
+		let i = 0,
+			j = 0;
+		let temp = [];
+		console.log(movesFen.length);
+		for (i = 0; i < movesFen.length; i++) {
+			if (movesFen[i] === comments[j].fen) {
+				temp[i] = comments[j].comment;
+				j++;
+			} else {
+				temp[i] = null;
+			}
+			console.log('temp[i] = ' + temp[i]);
+		}
+		setComArray(temp);
+		// console.log('temp ' + temp);
+	}, [movesFen]);
 
 	const nextMove = (curMove) => {
 		curMove + 1 < movesFen.length && setCurMove(curMove + 1);
@@ -212,7 +233,8 @@ const AddYourOwnTemp = () => {
 
 	game.load_pgn(pgn) === false && console.log('pgn invalid');
 	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
-	console.log(comments);
+
+	console.log(comArray);
 
 	return (
 		<div className={classes.root}>
@@ -288,7 +310,6 @@ const AddYourOwnTemp = () => {
 
 								setPgn(p);
 								//set it as pgn for game 1
-
 								// console.log('current fen ' + game.fen());
 							}}
 							value={pgn}
@@ -329,8 +350,7 @@ const AddYourOwnTemp = () => {
 					<React.Fragment>
 						<Typography variant='h5'> Preview</Typography>
 						{/* {comments[0].comment} */}
-						{movesFen[curMove] === comments[0].fen &&
-							comments[0].comment}
+						{comArray[curMove] !== null && comArray[curMove]}
 					</React.Fragment>
 				)}
 				{activeStep === steps.length ? (
