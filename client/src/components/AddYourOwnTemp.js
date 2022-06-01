@@ -47,12 +47,14 @@ const override = css`
 `;
 
 // To Do
-// 1. Retrieve comments
-// 2. Display comments in the next page
-// 3. Come up with instructions
-// 4. Backend
-// 5. Login and signup page
-// 6. Login with google
+//      1. Retrieve comments
+//      2. Display comments in the next page
+//      3. Show if pgn is valid or invalid
+// 4. Disable next button and enable if the pgn is validated
+// 5. Come up with instructions
+// 6. Backend
+// 7. Login and signup page
+// 8. Login with google
 
 const useStyles = makeStyles({
 	root: {
@@ -132,8 +134,11 @@ const AddYourOwnTemp = () => {
 		let i = 0,
 			j = 0;
 		let temp = [];
-		console.log(movesFen.length);
+		console.log(movesFen.length); // 6
 		for (i = 0; i < movesFen.length; i++) {
+			if (j >= comments.length) {
+				break;
+			}
 			if (movesFen[i] === comments[j].fen) {
 				temp[i] = comments[j].comment;
 				j++;
@@ -145,6 +150,10 @@ const AddYourOwnTemp = () => {
 		setComArray(temp);
 		// console.log('temp ' + temp);
 	}, [movesFen]);
+
+	useEffect(() => {
+		game.load_pgn(pgn) === false ? setPgnValid(false) : setPgnValid(true);
+	}, [pgn]);
 
 	const nextMove = (curMove) => {
 		curMove + 1 < movesFen.length && setCurMove(curMove + 1);
@@ -163,7 +172,6 @@ const AddYourOwnTemp = () => {
 		hist.map((item) => {
 			// console.log(game2.move(item));
 			if (console.log(game2.move(item)) === null) {
-				setPgnValid(false);
 				console.log('pgn incorrect');
 			}
 			const fen = game2.fen(); // dont be smart and put game2.fen directly in next line. doesnt work
@@ -174,9 +182,10 @@ const AddYourOwnTemp = () => {
 
 	const reset = () => {
 		setPgn(
-			'[SetUp "1"]\n[FEN "<Enter Your Starting FEN String Here>"]\n\n'
+			'[SetUp "1"]\n[FEN "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"]\n\n'
 		);
 		setComments([]);
+		setComArray([]);
 		setStartFen('');
 		setMovesFen([]);
 		game.reset();
@@ -338,6 +347,26 @@ const AddYourOwnTemp = () => {
 								</Typography>
 							</p>
 						)}
+
+						{pgnValid === false ? (
+							<Typography
+								className={classes.invalid}
+								variant='subtitle2'
+								style={{ marginTop: '5px' }}
+								gutterBottom>
+								<ReportGmailerrorredOutlinedIcon />
+								PGN Invalid
+							</Typography>
+						) : (
+							<Typography
+								className={classes.valid}
+								variant='subtitle2'
+								style={{ marginTop: '5px' }}
+								gutterBottom>
+								<CheckCircleOutlineOutlinedIcon />
+								PGN Valid
+							</Typography>
+						)}
 						<Button variant='outlined' onClick={done}>
 							Validate
 						</Button>
@@ -348,9 +377,32 @@ const AddYourOwnTemp = () => {
 				)}
 				{activeStep === 1 && (
 					<React.Fragment>
-						<Typography variant='h5'> Preview</Typography>
-						{/* {comments[0].comment} */}
-						{comArray[curMove] !== null && comArray[curMove]}
+						<div className={classes.preview}>
+							<Typography variant='h5'> Preview</Typography>
+							<br></br>
+							<Typography variant='h6'>
+								Notes on This Move
+							</Typography>
+							<TextField
+								inputProps={{
+									style: {
+										fontSize: '15px',
+										fontFamily: 'monospace',
+									},
+								}}
+								id='comTxtBox'
+								multiline
+								fullWidth={true}
+								disabled={true}
+								value={
+									comArray[curMove] === null
+										? 'no comment for this move'
+										: comArray[curMove]
+								}
+								minRows={8}
+								maxRows={15}
+							/>
+						</div>
 					</React.Fragment>
 				)}
 				{activeStep === steps.length ? (
