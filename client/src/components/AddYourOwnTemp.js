@@ -50,7 +50,7 @@ const override = css`
 //      1. Retrieve comments
 //      2. Display comments in the next page
 //      3. Show if pgn is valid or invalid
-// 4. Disable next button and enable if the pgn is validated
+//      4. Disable next button and enable if the pgn is validated
 // 5. Come up with instructions
 // 6. Backend
 // 7. Login and signup page
@@ -240,7 +240,7 @@ const AddYourOwnTemp = () => {
 	// 	console.log('works for just null');
 	// }
 
-	game.load_pgn(pgn) === false && console.log('pgn invalid');
+	// game.load_pgn(pgn) === false && console.log('pgn invalid');
 	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
 
 	console.log(comArray);
