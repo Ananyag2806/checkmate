@@ -17,7 +17,8 @@ router.post(
 			check('heading', 'Heading is required').not().isEmpty(),
 			check('caption', 'Caption is required').not().isEmpty(),
 			check('moves', 'Moves are required').not().isEmpty(),
-			check('bestMoves', 'bestMoves are required').not().isEmpty(),
+			check('bestMoves', 'Best Moves are required').not().isEmpty(),
+			check('comments', 'Comments are required').not().isEmpty(),
 		],
 	],
 	async (req, res) => {
@@ -35,8 +36,7 @@ router.post(
 				caption: req.body.caption,
 				moves: req.body.moves,
 				bestMoves: req.body.bestMoves,
-				flip: req.body.flip,
-				whiteToPlay: req.body.whiteToPlay,
+				comments: req.body.comments,
 			});
 			const post = await newPost.save();
 			res.json(post);

@@ -39,12 +39,8 @@ const PostSchema = new Schema({
 		type: Array,
 		required: true,
 	},
-	flip: {
-		type: Boolean,
-		required: true,
-	},
-	whiteToPlay: {
-		type: Boolean,
+	comments: {
+		type: Array,
 		required: true,
 	},
 });

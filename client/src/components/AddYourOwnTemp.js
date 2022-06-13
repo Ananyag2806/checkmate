@@ -22,6 +22,9 @@ import TextField from '@mui/material/TextField';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import Typography from '@mui/material/Typography';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 import bB from './media/bB.png';
 // import bK from './media/bK.png';
@@ -103,6 +106,13 @@ const useStyles = makeStyles({
 		alignItems: 'center',
 		margin: '3px',
 	},
+	bestMoves: {
+		display: 'flex',
+		alignItems: 'center',
+	},
+	txt: {
+		margin: '100px',
+	},
 });
 
 const steps = [
@@ -115,7 +125,6 @@ const AddYourOwnTemp = () => {
 	const classes = useStyles();
 
 	const [curMove, setCurMove] = useState(0);
-	const [flip, setFlip] = useState(false);
 	const chessboardRef = useRef();
 	const [game, setGame] = useState(new Chess()); //this game is visible on the screen
 	const [game2, setGame2] = useState(new Chess()); //this game is not visible and is here for adding moves in array
@@ -127,6 +136,9 @@ const AddYourOwnTemp = () => {
 	const [comArray, setComArray] = useState([]);
 	const [startFen, setStartFen] = useState('');
 	const [movesFen, setMovesFen] = useState([]);
+	const [bestMoves, setBestMoves] = useState([]);
+	const [heading, setHeading] = useState('');
+	const [caption, setCaption] = useState('');
 
 	useEffect(() => {
 		// make a new array that stores comments in an organised fashion
@@ -149,6 +161,13 @@ const AddYourOwnTemp = () => {
 		}
 		setComArray(temp);
 		// console.log('temp ' + temp);
+
+		// for best moves array
+		let tempArr = [];
+		for (let i = 0; i < movesFen.length; i++) {
+			tempArr.push(false);
+		}
+		setBestMoves(tempArr);
 	}, [movesFen]);
 
 	useEffect(() => {
@@ -188,6 +207,7 @@ const AddYourOwnTemp = () => {
 		setComArray([]);
 		setStartFen('');
 		setMovesFen([]);
+		setBestMoves([]);
 		game.reset();
 		game2.reset();
 	};
@@ -243,8 +263,6 @@ const AddYourOwnTemp = () => {
 	// game.load_pgn(pgn) === false && console.log('pgn invalid');
 	activeStep === 1 && movesFen.length > 0 && game.load(movesFen[curMove]);
 
-	console.log(comArray);
-
 	return (
 		<div className={classes.root}>
 			<div className={classes.half}>
@@ -260,7 +278,6 @@ const AddYourOwnTemp = () => {
 						borderRadius: '4px',
 						boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
 					}}
-					// boardOrientation={posts[curPost].flip ? 'black' : 'white'}
 					customDarkSquareStyle={{ backgroundColor: '#A1B57D' }}
 					customLightSquareStyle={{ backgroundColor: '#F7F7EE' }}
 					customPieces={customPieces()}
@@ -303,7 +320,41 @@ const AddYourOwnTemp = () => {
 									fontFamily: 'monospace',
 								},
 							}}
-							id='pgnTxtBox'
+							required={true}
+							className={classes.txt}
+							label='Heading'
+							fullWidth={true}
+							onChange={(e) => {
+								setHeading(e.target.value);
+							}}
+							value={heading}
+						/>
+						<TextField
+							inputProps={{
+								style: {
+									fontSize: '15px',
+									fontFamily: 'monospace',
+								},
+							}}
+							required={true}
+							className={classes.txt}
+							label='Caption'
+							fullWidth={true}
+							onChange={(e) => {
+								setCaption(e.target.value);
+							}}
+							value={caption}
+						/>
+
+						<TextField
+							inputProps={{
+								style: {
+									fontSize: '15px',
+									fontFamily: 'monospace',
+								},
+							}}
+							required={true}
+							className={classes.txt}
 							label='PGN'
 							multiline
 							fullWidth={true}
@@ -390,7 +441,35 @@ const AddYourOwnTemp = () => {
 										fontFamily: 'monospace',
 									},
 								}}
-								id='comTxtBox'
+								className={classes.txt}
+								label='Heading'
+								fullWidth={true}
+								disabled={true}
+								value={heading}
+							/>
+							<TextField
+								inputProps={{
+									style: {
+										fontSize: '15px',
+										fontFamily: 'monospace',
+									},
+								}}
+								required={true}
+								className={classes.txt}
+								label='Caption'
+								fullWidth={true}
+								disabled={true}
+								value={caption}
+							/>
+							<TextField
+								inputProps={{
+									style: {
+										fontSize: '15px',
+										fontFamily: 'monospace',
+									},
+								}}
+								className={classes.txt}
+								label='Comments'
 								multiline
 								fullWidth={true}
 								disabled={true}
@@ -402,6 +481,32 @@ const AddYourOwnTemp = () => {
 								minRows={8}
 								maxRows={15}
 							/>
+
+							<div className={classes.bestMoves}>
+								<Checkbox
+									checked={bestMoves[curMove]}
+									onChange={(e) => {
+										let newArr = [...bestMoves];
+										newArr[curMove] = e.target.checked;
+										setBestMoves(newArr);
+									}}
+									sx={{
+										color: '#f54242',
+										'&.Mui-checked': {
+											color: '#f54242',
+										},
+									}}
+									icon={<FavoriteBorder />}
+									checkedIcon={<Favorite />}
+								/>
+								<Typography
+									variant='body1'
+									sx={{
+										color: '#f54242',
+									}}>
+									Add this as best move
+								</Typography>
+							</div>
 						</div>
 					</React.Fragment>
 				)}
