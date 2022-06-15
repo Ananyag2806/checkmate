@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import login from './media/login.png';
 import { makeStyles } from '@mui/styles';
 import { Button } from '@mui/material';
@@ -8,6 +8,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import DividerWithText from './DividerWithText';
 import { styled } from '@mui/material/styles';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -107,6 +108,18 @@ const TextFieldCustom = styled(TextField)({
 function Login() {
 	const classes = useStyles();
 
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const submit = () => {
+		axios.post('http://localhost:5000/api/auth', {
+			email: email,
+			password: password,
+		});
+	};
+
+	console.log(email + ' ' + password);
+
 	return (
 		<div className={classes.root}>
 			<div className={classes.main}>
@@ -141,6 +154,9 @@ function Login() {
 								</InputAdornment>
 							),
 						}}
+						onChange={(e) => {
+							setEmail(e.target.value);
+						}}
 						variant='standard'
 					/>
 					<TextFieldCustom
@@ -156,6 +172,9 @@ function Login() {
 								</InputAdornment>
 							),
 						}}
+						onChange={(e) => {
+							setPassword(e.target.value);
+						}}
 						variant='standard'
 					/>
 					<Button
@@ -164,6 +183,7 @@ function Login() {
 							marginTop: '10px',
 						}}
 						className={classes.login}
+						onClick={submit}
 						variant='contained'>
 						Login
 					</Button>

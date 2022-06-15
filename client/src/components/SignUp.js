@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import signUp from './media/signUp.png';
 import { makeStyles } from '@mui/styles';
 import { Button } from '@mui/material';
@@ -9,6 +9,10 @@ import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlin
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import DividerWithText from './DividerWithText';
 import { styled } from '@mui/material/styles';
+import axios from 'axios';
+
+// To do
+// 1. Add password check
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -107,6 +111,19 @@ const TextFieldCustom = styled(TextField)({
 function Login() {
 	const classes = useStyles();
 
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
+
+	const submit = () => {
+		axios.post('http://localhost:5000/api/users', {
+			name: name,
+			email: email,
+			password: password,
+		});
+	};
+
 	return (
 		<div className={classes.root}>
 			<div className={classes.main}>
@@ -141,6 +158,7 @@ function Login() {
 								</InputAdornment>
 							),
 						}}
+						onChange={(e) => setName(e.target.value)}
 						variant='standard'
 					/>
 					<TextFieldCustom
@@ -156,6 +174,7 @@ function Login() {
 								</InputAdornment>
 							),
 						}}
+						onChange={(e) => setEmail(e.target.value)}
 						variant='standard'
 					/>
 					<TextFieldCustom
@@ -171,6 +190,7 @@ function Login() {
 								</InputAdornment>
 							),
 						}}
+						onChange={(e) => setPassword(e.target.value)}
 						variant='standard'
 					/>
 					<TextFieldCustom
@@ -186,6 +206,7 @@ function Login() {
 								</InputAdornment>
 							),
 						}}
+						onChange={(e) => setConfirmPassword(e.target.value)}
 						variant='standard'
 					/>
 					<Button
@@ -194,6 +215,7 @@ function Login() {
 							marginTop: '10px',
 						}}
 						className={classes.login}
+						onClick={submit}
 						variant='contained'>
 						Register
 					</Button>
