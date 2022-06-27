@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import login from './media/login.png';
 import { makeStyles } from '@mui/styles';
-import { Button } from '@mui/material';
+import { Button, FormControl } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
@@ -9,6 +9,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import DividerWithText from './DividerWithText';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
+import Input from '@mui/material/Input';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -110,15 +114,39 @@ function Login() {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [visibility, setVisibility] = useState(false);
 
-	const submit = () => {
-		axios.post('http://localhost:5000/api/auth', {
-			email: email,
-			password: password,
-		});
+	const submit = async () => {
+		try {
+			const res = await axios.post(
+				'http://localhost:5000/api/auth',
+				{
+					email: email,
+					password: password,
+				},
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			);
+			console.log(res.data);
+			window.location.href = '/';
+			localStorage.setItem('token', res.data.token);
+			// Add Modal here
+		} catch (err) {
+			console.log(err.response);
+			// Add Modal here
+		}
 	};
 
-	console.log(email + ' ' + password);
+	// Password visibility
+	const handleClickShowPassword = () => {
+		setVisibility(!visibility);
+	};
+	const handleMouseDownPassword = (event) => {
+		event.preventDefault();
+	};
 
 	return (
 		<div className={classes.root}>
@@ -161,22 +189,36 @@ function Login() {
 					/>
 					<TextFieldCustom
 						id='input-with-icon-textfield'
+						variant='standard'
 						label='Password'
+						required
 						className={classes.textField}
 						style={{ marginTop: '10px' }}
-						required
+						type={visibility ? 'text' : 'password'}
+						onChange={(e) => {
+							setPassword(e.target.value);
+						}}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position='start'>
 									<LockOutlinedIcon />
 								</InputAdornment>
 							),
+							endAdornment: (
+								<IconButton
+									aria-label='toggle password visibility'
+									onClick={handleClickShowPassword}
+									onMouseDown={handleMouseDownPassword}>
+									{visibility ? (
+										<VisibilityOff />
+									) : (
+										<Visibility />
+									)}
+								</IconButton>
+							),
 						}}
-						onChange={(e) => {
-							setPassword(e.target.value);
-						}}
-						variant='standard'
 					/>
+
 					<Button
 						style={{
 							backgroundColor: '#92E3A9',
