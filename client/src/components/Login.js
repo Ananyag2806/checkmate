@@ -8,11 +8,11 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import DividerWithText from './DividerWithText';
 import { styled } from '@mui/material/styles';
-import axios from 'axios';
 import Input from '@mui/material/Input';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -131,7 +131,7 @@ function Login() {
 				}
 			);
 			console.log(res.data);
-			window.location.href = '/';
+			// window.location.href = '/';
 			localStorage.setItem('token', res.data.token);
 			// Add Modal here
 		} catch (err) {
