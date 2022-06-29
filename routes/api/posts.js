@@ -18,7 +18,7 @@ router.post(
 			check('caption', 'Caption is required').not().isEmpty(),
 			check('moves', 'Moves are required').not().isEmpty(),
 			check('bestMoves', 'Best Moves are required').not().isEmpty(),
-			check('comments', 'Comments are required').not().isEmpty(),
+			// check('comments', 'Comments are required').not().isEmpty(),
 		],
 	],
 	async (req, res) => {

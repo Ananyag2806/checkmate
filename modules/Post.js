@@ -41,7 +41,7 @@ const PostSchema = new Schema({
 	},
 	comments: {
 		type: Array,
-		required: true,
+		required: false,
 	},
 });
 

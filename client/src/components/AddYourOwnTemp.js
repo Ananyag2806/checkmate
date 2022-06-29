@@ -26,6 +26,8 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 
+import axios from 'axios';
+
 import bB from './media/bB.png';
 // import bK from './media/bK.png';
 // import bN from './media/bN.png';
@@ -140,6 +142,38 @@ const AddYourOwnTemp = () => {
 	const [heading, setHeading] = useState('');
 	const [caption, setCaption] = useState('');
 
+	const post = async () => {
+		try {
+			const res = await axios.post(
+				'http://localhost:5000/api/posts',
+				{
+					heading: heading,
+					caption: caption,
+					moves: movesFen,
+					bestMoves: bestMoves,
+					comments: comArray,
+				},
+				{
+					headers: {
+						'Access-Control-Allow-Origin': '*',
+						'Content-Type': 'application/json',
+						'Accept': 'application/json',
+						'Authorization': `Bearer ${localStorage.getItem(
+							'token'
+						)}`,
+					},
+				}
+			);
+			console.log(res.data);
+			// window.location.href = '/';
+			// Add Modal here
+		} catch (err) {
+			console.log(err.response);
+			console.log('token ' + localStorage.getItem('token'));
+			// Add Modal here
+		}
+	};
+
 	useEffect(() => {
 		// make a new array that stores comments in an organised fashion
 		console.log('in useEffect');
@@ -181,6 +215,8 @@ const AddYourOwnTemp = () => {
 		curMove - 1 >= 0 && setCurMove(curMove - 1);
 	};
 
+	console.log(localStorage.getItem('token'));
+
 	const done = () => {
 		setPgn(game.pgn());
 		game2.load(startFen); //load fen into game2
@@ -196,7 +232,7 @@ const AddYourOwnTemp = () => {
 			const fen = game2.fen(); // dont be smart and put game2.fen directly in next line. doesnt work
 			setMovesFen((oldArray) => [...oldArray, fen]);
 		});
-		console.log(game2.pgn());
+		// console.log(game2.pgn());
 	};
 
 	const reset = () => {
@@ -507,6 +543,9 @@ const AddYourOwnTemp = () => {
 									Add this as best move
 								</Typography>
 							</div>
+							<Button variant='outlined' onClick={post}>
+								POST!
+							</Button>
 						</div>
 					</React.Fragment>
 				)}
